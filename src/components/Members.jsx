@@ -6,7 +6,7 @@ export const membersData = [
   {
     id: 'vishal',
     name: 'Vishal',
-    imageName: 'Vishal.png',
+    imageName: 'Vishal.webp',
     role: 'Lead Performer',
     type: 'captain',
     bgColor: 'bg-gradient-to-br from-slate-800 to-slate-900',
@@ -17,7 +17,7 @@ export const membersData = [
   {
     id: 'ajisha',
     name: 'Ajisha',
-    imageName: 'Ajisha.png',
+    imageName: 'Ajisha.webp',
     role: 'Lead Performer',
     type: 'captain',
     bgColor: 'bg-gradient-to-br from-gray-800 to-gray-900',
@@ -29,7 +29,7 @@ export const membersData = [
   {
     id: 'abin',
     name: 'Abin',
-    imageName: 'Abin.png',
+    imageName: 'Abin.webp',
     role: 'Crystal Warrior',
     type: 'member',
     bgColor: 'bg-gradient-to-br from-slate-700 to-slate-800',
@@ -40,7 +40,7 @@ export const membersData = [
   {
     id: 'akshaya',
     name: 'Akshaya',
-    imageName: 'Akshaya.png',
+    imageName: 'Akshaya.webp',
     role: 'Inferno Knight',
     type: 'member',
     bgColor: 'bg-gradient-to-br from-slate-700 to-slate-800',
@@ -51,7 +51,7 @@ export const membersData = [
   {
     id: 'aparna',
     name: 'Aparna',
-    imageName: 'Aparna.png',
+    imageName: 'Aparna.webp',
     role: 'Frost Sentinel',
     type: 'member',
     bgColor: 'bg-gradient-to-br from-slate-700 to-slate-800',
@@ -62,7 +62,7 @@ export const membersData = [
   {
     id: 'falin',
     name: 'Falin',
-    imageName: 'Falin.png',
+    imageName: 'Falin.webp',
     role: 'Thunder Warden',
     type: 'member',
     bgColor: 'bg-gradient-to-br from-slate-700 to-slate-800',
@@ -73,7 +73,7 @@ export const membersData = [
   {
     id: 'hamdhan',
     name: 'Hamdhan',
-    imageName: 'Hamdhan.png',
+    imageName: 'Hamdhan.webp',
     role: 'Shadow Operative',
     type: 'member',
     bgColor: 'bg-gradient-to-br from-slate-700 to-slate-800',
@@ -84,7 +84,7 @@ export const membersData = [
   {
     id: 'jenish',
     name: 'Jenish',
-    imageName: 'Jenish.png',
+    imageName: 'Jenish.webp',
     role: 'War Engineer',
     type: 'member',
     bgColor: 'bg-gradient-to-br from-slate-700 to-slate-800',
@@ -95,7 +95,7 @@ export const membersData = [
   {
     id: 'nithisha',
     name: 'Nithisha',
-    imageName: 'Nithisha.png',
+    imageName: 'Nithisha.webp',
     role: 'Arcane Duelist',
     type: 'member',
     bgColor: 'bg-gradient-to-br from-slate-700 to-slate-800',
@@ -106,7 +106,7 @@ export const membersData = [
   {
     id: 'tony',
     name: 'Tony',
-    imageName: 'Tony.png',
+    imageName: 'Tony.webp',
     role: 'Elite Ranger',
     type: 'member',
     bgColor: 'bg-gradient-to-br from-slate-700 to-slate-800',
