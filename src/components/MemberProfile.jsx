@@ -113,7 +113,7 @@ const MemberProfile = () => {
 
             {/* Right Column - Details */}
             <div className="md:col-span-2 space-y-6">
-              {/* Name and Username */}
+              {/* Name and Role */}
               <div>
                 <h1 className="text-3xl sm:text-4xl font-bold text-white mb-2 minecraft-shadow">
                   {member.name}

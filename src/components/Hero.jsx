@@ -19,73 +19,103 @@ const Hero = () => {
 
     // Create cherry blossom petals
     const petals = []
-    const petalGeometry = new THREE.PlaneGeometry(0.1, 0.1)
     
-    // Create petal material with pink gradient
-    const petalMaterial = new THREE.MeshBasicMaterial({
-      color: 0xFFB6C1, // Light pink
-      transparent: true,
-      opacity: 0.8,
-      side: THREE.DoubleSide
-    })
-
-    // Create multiple petals
-    for (let i = 0; i < 80; i++) {
-      const petal = new THREE.Mesh(petalGeometry, petalMaterial.clone())
+    // Create realistic cherry blossom petal shape
+    const petalShape = new THREE.Shape()
+    petalShape.moveTo(0, 0)
+    petalShape.quadraticCurveTo(0.3, 0.1, 0.4, 0.5)
+    petalShape.quadraticCurveTo(0.2, 0.8, 0, 0.9)
+    petalShape.quadraticCurveTo(-0.2, 0.8, -0.4, 0.5)
+    petalShape.quadraticCurveTo(-0.3, 0.1, 0, 0)
+    
+    const petalGeometry = new THREE.ShapeGeometry(petalShape)
+    petalGeometry.scale(0.4, 0.4, 1) // Perfect cherry blossom petal size
+    
+    // Create multiple petal materials with soft pink shades
+    const petalColors = [0xFFE4E1, 0xFFF0F5, 0xFFB6C1, 0xFFC0CB, 0xF5F5DC, 0xFFDAB9]
+    
+    // Create multiple petals spread across the screen
+    for (let i = 0; i < 120; i++) {
+      const petalMaterial = new THREE.MeshBasicMaterial({
+        color: petalColors[Math.floor(Math.random() * petalColors.length)],
+        transparent: true,
+        opacity: 0.8, // Better visibility for petal shapes
+        side: THREE.DoubleSide
+      })
       
-      // Random positioning
-      petal.position.x = (Math.random() - 0.5) * 20
-      petal.position.y = Math.random() * 15 + 5
-      petal.position.z = (Math.random() - 0.5) * 10
+      const petal = new THREE.Mesh(petalGeometry, petalMaterial)
       
-      // Random rotation
-      petal.rotation.x = Math.random() * Math.PI
-      petal.rotation.y = Math.random() * Math.PI
-      petal.rotation.z = Math.random() * Math.PI
+      // Position petals across screen with gentle spread
+      petal.position.x = (Math.random() - 0.5) * 35
+      petal.position.y = (Math.random() - 0.5) * 20 // Spread vertically too
+      petal.position.z = Math.random() * 6 + 3 // Closer to screen
       
-      // Add random properties for animation
+      // Gentle random rotation
+      petal.rotation.x = Math.random() * Math.PI * 0.5
+      petal.rotation.y = Math.random() * Math.PI * 0.5
+      petal.rotation.z = Math.random() * Math.PI * 0.5
+      
+      // Add gentle floating properties
       petal.userData = {
-        speedX: (Math.random() - 0.5) * 0.02,
-        speedY: -Math.random() * 0.03 - 0.01,
-        speedZ: (Math.random() - 0.5) * 0.02,
-        rotationSpeed: (Math.random() - 0.5) * 0.05,
-        swayAmplitude: Math.random() * 0.5 + 0.2,
-        swaySpeed: Math.random() * 0.02 + 0.01
+        speedX: (Math.random() - 0.5) * 0.008, // Very slow horizontal drift
+        speedY: (Math.random() - 0.5) * 0.008, // Very slow vertical drift
+        speedZ: (Math.random() - 0.5) * 0.005, // Gentle depth movement
+        rotationSpeedX: (Math.random() - 0.5) * 0.01, // Slow gentle rotation
+        rotationSpeedY: (Math.random() - 0.5) * 0.01,
+        rotationSpeedZ: (Math.random() - 0.5) * 0.01,
+        floatAmplitude: Math.random() * 0.3 + 0.2, // Gentle floating range
+        floatSpeed: Math.random() * 0.02 + 0.01, // Slow floating speed
+        initialX: petal.position.x,
+        initialY: petal.position.y,
+        initialZ: petal.position.z
       }
       
       scene.add(petal)
       petals.push(petal)
     }
 
-    camera.position.z = 5
+    camera.position.z = 8 // Closer for better view of small petals
 
     // Animation loop
     const animate = () => {
       requestAnimationFrame(animate)
 
       petals.forEach((petal, index) => {
-        // Falling motion
-        petal.position.y += petal.userData.speedY
+        // Gentle floating motion instead of falling
+        const time = Date.now() * 0.001
         
-        // Swaying motion
-        petal.position.x += Math.sin(Date.now() * petal.userData.swaySpeed + index) * petal.userData.swayAmplitude * 0.001
+        // Slow, gentle drifting
+        petal.position.x += petal.userData.speedX
+        petal.position.y += petal.userData.speedY
         petal.position.z += petal.userData.speedZ
         
-        // Rotation
-        petal.rotation.x += petal.userData.rotationSpeed
-        petal.rotation.y += petal.userData.rotationSpeed * 0.5
-        petal.rotation.z += petal.userData.rotationSpeed * 0.3
+        // Soft floating motion using multiple sine waves
+        petal.position.x += Math.sin(time * petal.userData.floatSpeed + index) * petal.userData.floatAmplitude * 0.001
+        petal.position.y += Math.cos(time * petal.userData.floatSpeed * 0.7 + index) * petal.userData.floatAmplitude * 0.001
+        petal.position.z += Math.sin(time * petal.userData.floatSpeed * 0.5 + index) * petal.userData.floatAmplitude * 0.0005
         
-        // Reset position when petal falls too low
-        if (petal.position.y < -10) {
-          petal.position.y = Math.random() * 5 + 10
-          petal.position.x = (Math.random() - 0.5) * 20
-          petal.position.z = (Math.random() - 0.5) * 10
+        // Very gentle rotation - no diagonal spinning
+        petal.rotation.x += petal.userData.rotationSpeedX
+        petal.rotation.y += petal.userData.rotationSpeedY
+        petal.rotation.z += petal.userData.rotationSpeedZ
+        
+        // Gentle boundary wrapping instead of fast reset
+        if (petal.position.x > 20) {
+          petal.position.x = -20
+        } else if (petal.position.x < -20) {
+          petal.position.x = 20
         }
         
-        // Keep petals within bounds
-        if (Math.abs(petal.position.x) > 12) {
-          petal.position.x = (Math.random() - 0.5) * 20
+        if (petal.position.y > 15) {
+          petal.position.y = -15
+        } else if (petal.position.y < -15) {
+          petal.position.y = 15
+        }
+        
+        if (petal.position.z > 10) {
+          petal.position.z = 3
+        } else if (petal.position.z < 2) {
+          petal.position.z = 10
         }
       })
 
@@ -112,7 +142,6 @@ const Hero = () => {
       renderer.dispose()
     }
   }, [])
-
   // Icon components matching the provided design
   const PixelIcon = ({ type }) => {
     const icons = {
@@ -159,8 +188,8 @@ const Hero = () => {
         {/* Three.js Cherry Blossom Animation */}
         <div 
           ref={mountRef} 
-          className="absolute inset-0 z-0 pointer-events-none"
-          style={{ mixBlendMode: 'screen' }}
+          className="absolute inset-0 z-20 pointer-events-none"
+          style={{ mixBlendMode: 'normal' }}
         />
 
         {/* Background Image with Overlay */}
