@@ -7,25 +7,23 @@ export const membersData = [
     id: 'vishal',
     name: 'Vishal',
     imageName: 'Vishal.png',
-    role: 'Clan Commander',
+    role: 'Lead Performer',
     type: 'captain',
     bgColor: 'bg-gradient-to-br from-slate-800 to-slate-900',
     cardBg: 'bg-gradient-to-br from-slate-900 to-black',
     borderColor: 'border-emerald-500',
     roleColor: 'text-emerald-400',
-    joinDate: 'Founder - 2019',
   },
   {
     id: 'ajisha',
     name: 'Ajisha',
     imageName: 'Ajisha.png',
-    role: 'Vice Commander',
+    role: 'Lead Performer',
     type: 'captain',
     bgColor: 'bg-gradient-to-br from-gray-800 to-gray-900',
     cardBg: 'bg-gradient-to-br from-gray-900 to-black',
     borderColor: 'border-red-500',
     roleColor: 'text-red-400',
-    joinDate: 'January 2020',
   },
   // Regular members
   {
@@ -154,7 +152,7 @@ const Members = () => {
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-3xl sm:text-4xl font-bold text-white mb-4 minecraft-shadow">
-            Lumina Clan Elite
+            Lumina Kaizokudan
           </h1>
           <p className="text-minecraft-gray text-base max-w-2xl mx-auto leading-relaxed">
             Meet the legendary warriors who forge our destiny in the realm of blocks and dreams.
@@ -163,9 +161,7 @@ const Members = () => {
 
         {/* Captains Section */}
         <div className="mb-16">
-          <h2 className="text-2xl sm:text-3xl font-bold text-center text-white mb-8 minecraft-shadow">
-            Command Structure
-          </h2>
+          
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {captains.map((captain) => (
               <div key={captain.id} className="text-center">

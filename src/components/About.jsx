@@ -55,10 +55,10 @@ const About = () => {
   ]
 
   return (
-    <section className="min-h-screen py-20 bg-minecraft-darker">
+    <section className="py-12 bg-minecraft-darker">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Hero Banner */}
-        <div className="relative mb-12 overflow-hidden border-4 border-black/50">
+        <div className="relative mb-8 overflow-hidden border-4 border-black/50">
           <div 
             className="h-64 bg-cover bg-center"
             style={{ 
