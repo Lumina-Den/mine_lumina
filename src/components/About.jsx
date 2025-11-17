@@ -87,8 +87,6 @@ const About = () => {
             <p className="text-minecraft-gray text-xs sm:text-sm mb-6 leading-relaxed">
               A narrative detailing the clan's founding, key events, and evolution. From humble beginnings to our current state, this is the story of our journey together.
             </p>
-
-            {/* Timeline */}
             <div className="space-y-4">
               {historyTimeline.map((item, index) => (
                 <div key={index} className="flex items-start space-x-4 bg-black/20 p-3 border-l-4 border-minecraft-green">
