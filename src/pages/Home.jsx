@@ -1,5 +1,6 @@
 import React from 'react'
 import Hero from '../components/Hero'
+import FallingStraw from '../components/FallingStraw'
 
 const Home = () => {
   const historyTimeline = [
@@ -57,6 +58,7 @@ const Home = () => {
 
   return (
     <div>
+      <FallingStraw />
       <Hero />
       
       {/* About Section - Previously About Page Content */}
