@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body {
+    @apply bg-minecraft-dark text-white;
+    font-family: 'Press Start 2P', 'Courier New', monospace;
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: grayscale;
+    image-rendering: pixelated;
+    cursor: none !important;
+  }
+  
+  *, *:before, *:after {
+    cursor: none !important;
+  }
+  
+  a, button, [role="button"], input[type="submit"], input[type="button"], .cursor-pointer {
+    cursor: none !important;
+  }
+  
+  a:hover, button:hover, [role="button"]:hover {
+    cursor: none !important;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Press Start 2P', 'Courier New', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  p, span, a, button {
+    font-family: 'Press Start 2P', 'Courier New', monospace;
+  }
+}
+
+/* Hide default cursor completely */
+* {
+  cursor: none !important;
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-minecraft-green to-minecraft-blue bg-clip-text text-transparent;
+  }
+  
+  .btn-gradient {
+    @apply bg-gradient-to-r from-minecraft-green to-green-600 hover:shadow-lg hover:shadow-minecraft-green/50 transition-all duration-300;
+  }
+  
+  .minecraft-text {
+    font-family: 'Minecrafter', 'Press Start 2P', 'Courier New', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  .minecraft-shadow {
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.8);
+  }
+  
+  .pixelated {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+  }
+  
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+  
+  /* Bounty Poster Styles */
+  .bounty-paper {
+    position: relative;
+    background: linear-gradient(135deg, #fef7cd 0%, #fbbf24 100%);
+    box-shadow: 
+      inset 0 0 20px rgba(180, 83, 9, 0.1),
+      0 4px 20px rgba(0, 0, 0, 0.3),
+      0 8px 40px rgba(0, 0, 0, 0.2);
+  }
+  
+  .bounty-paper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 20% 80%, rgba(180, 83, 9, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(180, 83, 9, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba(180, 83, 9, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  
+  /* Dark Bounty Poster Styles - matching dark theme */
+  .bounty-paper-dark {
+    position: relative;
+    background: linear-gradient(135deg, rgba(146, 64, 14, 0.9) 0%, rgba(120, 53, 15, 0.9) 100%);
+    box-shadow: 
+      inset 0 0 20px rgba(69, 26, 3, 0.4),
+      0 4px 20px rgba(0, 0, 0, 0.5),
+      0 8px 40px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(1px);
+  }
+  
+  .bounty-paper-dark::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 20% 80%, rgba(69, 26, 3, 0.2) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(69, 26, 3, 0.2) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba(69, 26, 3, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  
+  /* Nail Effects */
+  .nail {
+    position: relative;
+    background: linear-gradient(135deg, #6b7280 0%, #4b5563 50%, #374151 100%);
+    box-shadow: 
+      inset 0 1px 2px rgba(255, 255, 255, 0.2),
+      0 2px 4px rgba(0, 0, 0, 0.4);
+  }
+  
+  .nail::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60%;
+    height: 60%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .nail::after {
+    content: '';
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    width: 2px;
+    height: 2px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 50%;
+  }
+  
+  .bounty-title {
+    font-family: 'Press Start 2P', 'Courier New', monospace;
+    text-shadow: 
+      2px 2px 0px rgba(0, 0, 0, 0.8),
+      1px 1px 0px rgba(180, 83, 9, 0.5);
+    letter-spacing: 0.1em;
+  }
+  
+  .bounty-subtitle {
+    font-family: 'Press Start 2P', 'Courier New', monospace;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+    letter-spacing: 0.05em;
+  }
+  
+  .bounty-name {
+    font-family: 'Press Start 2P', 'Courier New', monospace;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.6);
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+  }
+  
+  .bounty-button {
+    font-family: 'Press Start 2P', 'Courier New', monospace;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.8);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transform: perspective(300px) rotateX(10deg);
+    transition: all 0.3s ease;
+  }
+  
+  .bounty-button:hover {
+    transform: perspective(300px) rotateX(0deg) translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Aged paper texture animation */
+  @keyframes fadeInPaper {
+    from {
+      opacity: 0;
+      transform: scale(0.95) rotate(-2deg);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) rotate(-1deg);
+    }
+  }
+  
+  .bounty-paper {
+    animation: fadeInPaper 0.6s ease-out;
+  }
+}

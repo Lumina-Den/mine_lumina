@@ -1,0 +1,289 @@
+import React from 'react'
+import { Link } from 'react-router-dom'
+
+export const membersData = [
+  // Captains
+  {
+    id: 'vishal',
+    name: 'Vishal',
+    imageName: 'Vishal.webp',
+    role: 'Lead Performer',
+    type: 'captain',
+    bounty: '1,000,000,000',
+    bgColor: 'bg-gradient-to-br from-amber-900/90 to-yellow-900/90',
+    cardBg: 'bg-gradient-to-br from-amber-800/80 to-yellow-800/80',
+    borderColor: 'border-amber-600',
+    roleColor: 'text-amber-300',
+    textColor: 'text-amber-200',
+  },
+  {
+    id: 'ajisha',
+    name: 'Ajisha',
+    imageName: 'Ajisha.webp',
+    role: 'Lead Performer',
+    type: 'captain',
+    bounty: '950,000,000',
+    bgColor: 'bg-gradient-to-br from-orange-900/90 to-amber-900/90',
+    cardBg: 'bg-gradient-to-br from-orange-800/80 to-amber-800/80',
+    borderColor: 'border-orange-600',
+    roleColor: 'text-orange-300',
+    textColor: 'text-orange-200',
+  },
+  // Regular members
+  {
+    id: 'abin',
+    name: 'Abin',
+    imageName: 'Abin.webp',
+    role: 'Crystal Warrior',
+    type: 'member',
+    bounty: '320,000,000',
+    bgColor: 'bg-gradient-to-br from-yellow-900/80 to-amber-900/80',
+    cardBg: 'bg-gradient-to-br from-yellow-800/70 to-orange-800/70',
+    borderColor: 'border-yellow-600',
+    roleColor: 'text-yellow-300',
+    textColor: 'text-amber-200',
+  },
+  {
+    id: 'akshaya',
+    name: 'Akshaya',
+    imageName: 'Akshaya.webp',
+    role: 'Inferno Knight',
+    type: 'member',
+    bounty: '280,000,000',
+    bgColor: 'bg-gradient-to-br from-yellow-900/80 to-amber-900/80',
+    cardBg: 'bg-gradient-to-br from-yellow-800/70 to-orange-800/70',
+    borderColor: 'border-orange-500',
+    roleColor: 'text-orange-300',
+    textColor: 'text-amber-200',
+  },
+  {
+    id: 'aparna',
+    name: 'Aparna',
+    imageName: 'Aparna.webp',
+    role: 'Frost Sentinel',
+    type: 'member',
+    bounty: '300,000,000',
+    bgColor: 'bg-gradient-to-br from-yellow-900/80 to-amber-900/80',
+    cardBg: 'bg-gradient-to-br from-yellow-800/70 to-orange-800/70',
+    borderColor: 'border-blue-500',
+    roleColor: 'text-blue-300',
+    textColor: 'text-amber-200',
+  },
+  {
+    id: 'falin',
+    name: 'Falin',
+    imageName: 'Falin.webp',
+    role: 'Thunder Warden',
+    type: 'member',
+    bounty: '250,000,000',
+    bgColor: 'bg-gradient-to-br from-yellow-900/80 to-amber-900/80',
+    cardBg: 'bg-gradient-to-br from-yellow-800/70 to-orange-800/70',
+    borderColor: 'border-yellow-500',
+    roleColor: 'text-yellow-300',
+    textColor: 'text-amber-200',
+  },
+  {
+    id: 'hamdhan',
+    name: 'Hamdhan',
+    imageName: 'Hamdhan.webp',
+    role: 'Shadow Operative',
+    type: 'member',
+    bounty: '310,000,000',
+    bgColor: 'bg-gradient-to-br from-yellow-900/80 to-amber-900/80',
+    cardBg: 'bg-gradient-to-br from-yellow-800/70 to-orange-800/70',
+    borderColor: 'border-purple-500',
+    roleColor: 'text-purple-300',
+    textColor: 'text-amber-200',
+  },
+  {
+    id: 'jenish',
+    name: 'Jenish',
+    imageName: 'Jenish.webp',
+    role: 'War Engineer',
+    type: 'member',
+    bounty: '270,000,000',
+    bgColor: 'bg-gradient-to-br from-yellow-900/80 to-amber-900/80',
+    cardBg: 'bg-gradient-to-br from-yellow-800/70 to-orange-800/70',
+    borderColor: 'border-gray-500',
+    roleColor: 'text-gray-300',
+    textColor: 'text-amber-200',
+  },
+  {
+    id: 'nithisha',
+    name: 'Nithisha',
+    imageName: 'Nithisha.webp',
+    role: 'Arcane Duelist',
+    type: 'member',
+    bounty: '290,000,000',
+    bgColor: 'bg-gradient-to-br from-yellow-900/80 to-amber-900/80',
+    cardBg: 'bg-gradient-to-br from-yellow-800/70 to-orange-800/70',
+    borderColor: 'border-green-500',
+    roleColor: 'text-green-300',
+    textColor: 'text-amber-200',
+  },
+  {
+    id: 'tony',
+    name: 'Tony',
+    imageName: 'Tony.webp',
+    role: 'Elite Ranger',
+    type: 'member',
+    bounty: '330,000,000',
+    bgColor: 'bg-gradient-to-br from-yellow-900/80 to-amber-900/80',
+    cardBg: 'bg-gradient-to-br from-yellow-800/70 to-orange-800/70',
+    borderColor: 'border-green-500',
+    roleColor: 'text-green-300',
+    textColor: 'text-amber-200',
+  },
+]
+
+const Members = () => {
+  // Avatar component using local images from Avatar_Bounty folder
+  const MemberAvatar = ({ imageName, name, isHoverable = false, aspectRatio = "square" }) => {
+    const avatarUrl = `/Avatar_Bounty/${imageName}`
+    
+    return (
+      <div className={`w-full h-full flex items-center justify-center overflow-hidden ${isHoverable ? 'transition-all duration-300 hover:scale-105' : ''}`}>
+        <img 
+          src={avatarUrl}
+          alt={`${name}'s Avatar`}
+          className={`w-full h-full ${aspectRatio === 'square' ? 'object-contain' : 'object-cover'}`}
+          style={{ 
+            imageRendering: 'crisp-edges',
+            WebkitImageRendering: 'crisp-edges',
+            msImageRendering: 'crisp-edges'
+          }}
+          onError={(e) => {
+            e.target.src = '/Avatar_Bounty/kid.jpg'
+          }}
+        />
+      </div>
+    )
+  }
+
+  // Captains - Top tier leadership (Vishal and Ajisha)
+  const captains = membersData.filter(member => member.type === 'captain')
+
+  // Regular members - Skilled warriors
+  const clanMembers = membersData.filter(member => member.type === 'member')
+
+  return (
+    <section className="min-h-screen py-20 bg-minecraft-darker relative overflow-hidden">
+      {/* Dark wooden board texture */}
+      <div className="absolute inset-0 bg-gradient-to-br from-stone-800/20 to-stone-900/30 mix-blend-multiply"></div>
+      <div className="absolute inset-0 opacity-5" style={{
+        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23a8a29e' fill-opacity='0.1' fill-rule='evenodd'%3E%3Cpath d='M0 60L60 0H0v60zM60 60V0l-60 60h60z'/%3E%3C/g%3E%3C/svg%3E")`,
+        backgroundSize: '30px 30px'
+      }}></div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h1 className="text-3xl sm:text-4xl font-bold text-white mb-2 minecraft-shadow">
+            LUMINA KAIZOKUDAN
+          </h1>
+          <div className="text-minecraft-green text-sm font-bold">
+            ⚔️ PIRATE CREW ⚔️
+          </div>
+          <p className="text-minecraft-gray text-base max-w-2xl mx-auto leading-relaxed mt-6 font-semibold">
+            Meet the legendary pirates who sail the Grand Line of blocks and dreams.
+          </p>
+        </div>
+
+        {/* Captains Section */}
+        <div className="mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {captains.map((captain) => (
+              <div key={captain.id} className="text-center">
+                <Link
+                  to={`/member/${captain.id}`}
+                  className="block relative group"
+                >
+                  <div className={`aspect-[3/4] ${captain.bgColor} overflow-hidden shadow-2xl border-6 ${captain.borderColor} hover:shadow-3xl transition-all duration-300 transform hover:-translate-y-2 bounty-paper-dark relative`}>
+                    
+                    {/* Avatar - Full area */}
+                    <div className="absolute inset-2">
+                      <MemberAvatar imageName={captain.imageName} name={captain.name} isHoverable={true} aspectRatio="portrait" />
+                    </div>
+                    
+                    {/* Captain Badge */}
+                    <div className="absolute top-3 right-3 z-10">
+                      <div className="bg-red-700 text-amber-200 px-3 py-2 shadow-lg border-2 border-red-900 transform rotate-12">
+                        <span className="text-xs font-bold">⚔️ CAPTAIN ⚔️</span>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+                <div className="mt-4">
+                  <h3 className={`${captain.textColor} text-xl font-bold mb-1 bounty-subtitle minecraft-shadow`}>
+                    {captain.name}
+                  </h3>
+                  <p className={`${captain.roleColor} text-sm font-bold mb-1`}>
+                    {captain.role}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Clan Members Section */}
+        <div>
+          <div className="text-center mb-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-white minecraft-shadow">
+              🏴‍☠️ CREW MEMBERS 🏴‍☠️
+            </h2>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+            {clanMembers.map((member) => (
+              <div key={member.id} className="text-center">
+                <Link
+                  to={`/member/${member.id}`}
+                  className="block group"
+                >
+                  <div className={`aspect-[4/5] ${member.bgColor} overflow-hidden shadow-xl border-4 ${member.borderColor} hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 bounty-paper-dark relative`}>
+                    
+                    {/* Avatar - Full area */}
+                    <div className="absolute inset-1">
+                      <MemberAvatar imageName={member.imageName} name={member.name} isHoverable={true} aspectRatio="portrait" />
+                    </div>
+                  </div>
+                </Link>
+                <div className="mt-3">
+                  <h3 className={`${member.textColor} text-sm font-bold mb-1 bounty-subtitle minecraft-shadow`}>
+                    {member.name}
+                  </h3>
+                  <p className={`text-xs font-semibold ${member.roleColor}`}>
+                    {member.role}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Join Call to Action */}
+        <div className="text-center mt-12">
+          <div className="bg-minecraft-dark border-4 border-minecraft-green p-8 max-w-xl mx-auto shadow-2xl">
+            <div className="bg-red-700 text-white text-center py-3 mb-6 border-2 border-red-900 shadow-lg">
+              <div className="text-xl font-bold minecraft-shadow">🏴‍☠️ JOIN THE CREW! 🏴‍☠️</div>
+            </div>
+            
+            <h3 className="text-xl font-bold text-white mb-4 minecraft-shadow">
+              Seeking New Pirates
+            </h3>
+            <p className="text-minecraft-gray mb-6 text-sm">
+              Think you have what it takes to sail the Grand Line? Prove your worth and earn your place among legends.
+            </p>
+            <Link
+              to="/join-clan"
+              className="inline-block bg-minecraft-green hover:bg-green-600 text-black font-bold py-3 px-8 border-2 border-black/50 transition-all duration-300 hover:scale-105 text-sm minecraft-shadow"
+            >
+              ⚔️ SET SAIL WITH US ⚔️
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export default Members
