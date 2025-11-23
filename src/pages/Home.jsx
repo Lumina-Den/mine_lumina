@@ -3,26 +3,26 @@ import Hero from '../components/Hero'
 import FallingStraw from '../components/FallingStraw'
 
 const Home = () => {
-  const historyTimeline = [
+  const visionElements = [
     {
-      icon: '🚩',
-      title: 'The Founding',
-      year: 'Year 1',
+      icon: '🧭',
+      title: 'Curiosity as Our Compass',
+      description: 'We navigate the seas of knowledge with wonder as our guide',
     },
     {
-      icon: '🏰',
-      title: 'First Fortress Built',
-      year: 'Year 1, Q2',
+      icon: '💎',
+      title: 'Learning as Our Treasure',
+      description: 'Every skill mastered is a gem in our collective bounty',
     },
     {
-      icon: '�',
-      title: 'First Dragon Defeated',
-      year: 'Year 2',
+      icon: '🚀',
+      title: 'Innovation Through Exploration',
+      description: 'We chart new territories in technology and creativity',
     },
     {
-      icon: '�',
-      title: 'Community Expansion',
-      year: 'Year 3',
+      icon: '⚓',
+      title: 'Unity in Adventure',
+      description: 'Together we sail further than any lone explorer could',
     },
   ]
 
@@ -79,7 +79,7 @@ const Home = () => {
                 About lumina
               </h1>
               <p className="text-minecraft-gray text-xs sm:text-sm max-w-3xl">
-                An introductory paragraph about the clan, its identity, and its core mission in the world of Minecraft.
+                Welcome to Lumina Light, a dynamic clan within the Byte Bash Blitz tech community. As a student-led organization, we are driven by passion and unwavering motivation towards technology, innovation, and collaborative learning. Our motto centers on fostering growth, sharing knowledge, and building the future through code, creativity, and community spirit.
               </p>
             </div>
           </div>
@@ -89,20 +89,24 @@ const Home = () => {
             {/* Our History - Takes 2 columns */}
             <div className="lg:col-span-2 bg-minecraft-dark border-4 border-black/50 p-6">
               <h2 className="text-2xl sm:text-3xl font-bold text-minecraft-green mb-4 minecraft-shadow">
-                Our History
+                Our Vision
               </h2>
               <p className="text-minecraft-gray text-xs sm:text-sm mb-6 leading-relaxed">
-                A narrative detailing the clan's founding, key events, and evolution. From humble beginnings to our current state, this is the story of our journey together.
+                At Lumina Light, our purpose is to grow through curiosity and creativity. We believe that <span className="text-minecraft-green font-bold">"Knowledge through fun"</span> — we learn because we enjoy it, not because we're forced to. We turn passion into mastery, and effort into excitement.
+              </p>
+              
+              <p className="text-minecraft-gray text-xs sm:text-sm mb-6 leading-relaxed">
+                Like true adventurers of the digital seas, we embrace the philosophy that <span className="text-amber-300 font-bold">"Curiosity is the compass. Learning is the treasure."</span> Every challenge is an undiscovered island, every project a new voyage, and every teammate a trusted crewmate on this grand expedition of innovation.
               </p>
 
-              {/* Timeline */}
+              {/* Vision Elements */}
               <div className="space-y-4">
-                {historyTimeline.map((item, index) => (
+                {visionElements.map((item, index) => (
                   <div key={index} className="flex items-start space-x-4 bg-black/20 p-3 border-l-4 border-minecraft-green">
                     <div className="text-2xl sm:text-3xl">{item.icon}</div>
                     <div className="flex-1">
                       <h3 className="font-bold text-white text-sm">{item.title}</h3>
-                      <p className="text-xs text-minecraft-gray">{item.year}</p>
+                      <p className="text-xs text-minecraft-gray">{item.description}</p>
                     </div>
                   </div>
                 ))}

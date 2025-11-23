@@ -28,11 +28,126 @@ const getMemberData = (id) => {
     }
   }
 
+  // Specific data for Vishal
+  if (id === 'vishal') {
+    return {
+      ...member,
+      bio: 'Vishal is an aspiring data engineer with a passionate interest in the world of AI and ML. As Lead Performer of the Lumina Crew, he combines technical expertise with strategic leadership, sailing through the digital seas of data and discovery.',
+      joinDate: 'Crew Since 2024',
+      stats: {
+        builds: 87,
+        pvpWins: 42,
+        hoursPlayed: 350,
+        achievements: 28,
+      },
+      linkedin: 'https://www.linkedin.com/in/vishaln24/',
+      github: 'https://github.com/Vishal-46',
+      portfolio: 'https://vishal-46.github.io/Vishal-Portfolio/',
+      terminal: 'https://terminal.bytebashblitz.org/profile/Vishal-46',
+    }
+  }
+
+  // Specific data for Tony
+  if (id === 'tony') {
+    return {
+      ...member,
+      bio: 'Tony is a skilled web developer and cloud computing enthusiast. As the "Pirate Hunter" of the Lumina Crew, he masters full-stack development with React and Supabase, creating innovative digital platforms and fitness applications.',
+      joinDate: 'Crew Since 2024',
+      stats: {
+        builds: 65,
+        pvpWins: 38,
+        hoursPlayed: 280,
+        achievements: 22,
+      },
+      linkedin: 'https://linkedin.com/in/infancetony',
+      github: 'https://github.com/infance-tony',
+      portfolio: 'https://infance-tony.github.io',
+      terminal: 'https://terminal.example.com',
+    }
+  }
+
+  // Specific data for Hamdhan
+  if (id === 'hamdhan') {
+    return {
+      ...member,
+      bio: 'Hamdhan is a passionate data scientist who brings the "Fire Fist" energy to data analysis and machine learning. He excels at transforming raw data into powerful insights and building innovative solutions.',
+      joinDate: 'Crew Since 2024',
+      stats: {
+        builds: 58,
+        pvpWins: 35,
+        hoursPlayed: 260,
+        achievements: 25,
+      },
+      linkedin: 'https://linkedin.com/in/hamdhan-hussain',
+      github: 'https://github.com/Hamdhusam',
+      portfolio: 'https://lovable.dev/projects/15278cb1-8afc-4b75-80b0-6271ef8114d2',
+      terminal: 'https://terminal.example.com',
+    }
+  }
+
+  // Specific data for Aparna
+  if (id === 'aparna') {
+    return {
+      ...member,
+      bio: 'Aparna is a talented web developer and UI/UX designer, earning her title as "Pirate Empress" through her exceptional design skills and full-stack development expertise. She creates beautiful, user-centered digital experiences.',
+      joinDate: 'Crew Since 2024',
+      stats: {
+        builds: 72,
+        pvpWins: 41,
+        hoursPlayed: 320,
+        achievements: 30,
+      },
+      linkedin: 'https://www.linkedin.com/in/aparna-suresh-79276235a',
+      github: 'https://github.com/Aparna-stack-ux782',
+      portfolio: 'https://aparna-mindscape.lovable.app/',
+      terminal: 'https://terminal.example.com',
+    }
+  }
+
+  // Specific data for Nithisha
+  if (id === 'nithisha') {
+    return {
+      ...member,
+      bio: 'Nithisha is a dedicated data scientist known as the "Moon Princess" for her innovative approach to data analysis and mobile application development. She specializes in image processing and secure data collection systems.',
+      joinDate: 'Crew Since 2024',
+      stats: {
+        builds: 63,
+        pvpWins: 37,
+        hoursPlayed: 290,
+        achievements: 26,
+      },
+      linkedin: 'https://www.linkedin.com/in/nithisha-p-n-362067332',
+      github: 'https://github.com/nithishanagarani',
+      portfolio: 'https://lovable.dev/projects/b892721e-ffec-4195-85d4-3878067cd541',
+      terminal: 'https://terminal.example.com',
+    }
+  }
+
+  // Specific data for Falin
+  if (id === 'falin') {
+    return {
+      ...member,
+      bio: 'Falin is a versatile web developer and UI/UX designer who embodies the "Black Leg" spirit through his dynamic full-stack development skills. He excels in Python, JavaScript, React, and creates engaging fitness and sports applications.',
+      joinDate: 'Crew Since 2024',
+      stats: {
+        builds: 69,
+        pvpWins: 33,
+        hoursPlayed: 275,
+        achievements: 24,
+      },
+      linkedin: 'https://www.linkedin.com/in/sandofalin',
+      github: 'https://github.com/Falin-dev',
+      portfolio: 'https://sportsdot.in',
+      terminal: 'https://terminal.example.com',
+    }
+  }
+
   // Add default bio and stats to existing member data
   return {
     ...member,
     bounty: member.bounty || '100,000,000',
     bio: `${member.name} is a skilled pirate in the Lumina Crew, specializing as a ${member.role}. Known for their dedication and strategic prowess on the Grand Line.`,
+    joinDate: 'Crew Since 2023',
     stats: {
       builds: Math.floor(Math.random() * 100) + 20,
       pvpWins: Math.floor(Math.random() * 50) + 10,
