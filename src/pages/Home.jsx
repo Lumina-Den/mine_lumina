@@ -67,18 +67,18 @@ const Home = () => {
           {/* About Hero Banner */}
           <div className="relative mb-12 overflow-hidden border-4 border-black/50">
             <div 
-              className="h-64 bg-cover bg-center"
+              className="h-80 sm:h-64 bg-cover bg-center"
               style={{ 
                 backgroundImage: "url('/Castle Photos - Download Free High-Quality Pictures _ Freepik.jpeg')",
               }}
             >
               <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80"></div>
             </div>
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
-              <h1 className="text-3xl sm:text-4xl font-bold text-white mb-4 minecraft-shadow">
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 py-6">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 minecraft-shadow">
                 About lumina
               </h1>
-              <p className="text-minecraft-gray text-xs sm:text-sm max-w-3xl">
+              <p className="text-minecraft-gray text-xs sm:text-sm max-w-3xl leading-relaxed">
                 Welcome to Lumina Light, a dynamic clan within the Byte Bash Blitz tech community. As a student-led organization, we are driven by passion and unwavering motivation towards technology, innovation, and collaborative learning. Our motto centers on fostering growth, sharing knowledge, and building the future through code, creativity, and community spirit.
               </p>
             </div>
