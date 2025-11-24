@@ -259,28 +259,6 @@ const Members = () => {
             ))}
           </div>
         </div>
-
-        {/* Join Call to Action */}
-        <div className="text-center mt-12">
-          <div className="bg-minecraft-dark border-4 border-minecraft-green p-8 max-w-xl mx-auto shadow-2xl">
-            <div className="bg-red-700 text-white text-center py-3 mb-6 border-2 border-red-900 shadow-lg">
-              <div className="text-xl font-bold minecraft-shadow">🏴‍☠️ JOIN THE CREW! 🏴‍☠️</div>
-            </div>
-            
-            <h3 className="text-xl font-bold text-white mb-4 minecraft-shadow">
-              Seeking New Pirates
-            </h3>
-            <p className="text-minecraft-gray mb-6 text-sm">
-              Think you have what it takes to sail the Grand Line? Prove your worth and earn your place among legends.
-            </p>
-            <Link
-              to="/join-clan"
-              className="inline-block bg-minecraft-green hover:bg-green-600 text-black font-bold py-3 px-8 border-2 border-black/50 transition-all duration-300 hover:scale-105 text-sm minecraft-shadow"
-            >
-              ⚔️ SET SAIL WITH US ⚔️
-            </Link>
-          </div>
-        </div>
       </div>
     </section>
   )

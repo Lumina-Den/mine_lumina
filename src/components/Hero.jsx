@@ -154,11 +154,22 @@ const Hero = () => {
   ]
 
   return (
-    <section className="relative min-h-screen bg-minecraft-darker pt-20 pb-16 overflow-hidden flex items-center">
+    <section className="relative min-h-screen pt-20 pb-16 overflow-hidden flex items-center">
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
+        style={{ 
+          backgroundImage: "url('/bg.jpeg')",
+        }}
+      />
+      
+      {/* Dark overlay for better contrast */}
+      <div className="absolute inset-0 bg-minecraft-darker/70" />
+      
       {/* Three.js Cherry Blossom Animation Background */}
       <div 
         ref={mountRef} 
-        className="absolute inset-0 z-0 pointer-events-none"
+        className="absolute inset-0 z-10 pointer-events-none"
         style={{ mixBlendMode: 'screen' }}
       />
       
