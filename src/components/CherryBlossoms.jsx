@@ -5,7 +5,7 @@ const CherryBlossoms = () => {
 
   useEffect(() => {
     // Create more falling petals that will settle at bottom
-    const fallingPetals = Array.from({ length: 25 }, (_, i) => ({
+    const fallingPetals = Array.from({ length: 35 }, (_, i) => ({
       id: i,
       left: Math.random() * 100,
       animationClass: `cherry-fall-${(i % 6) + 1}`,
