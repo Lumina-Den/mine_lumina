@@ -1,6 +1,7 @@
 import React from 'react'
 import Hero from '../components/Hero'
 import FallingStraw from '../components/FallingStraw'
+import CherryBlossoms from '../components/CherryBlossoms'
 
 const Home = () => {
   const visionElements = [
@@ -59,6 +60,7 @@ const Home = () => {
   return (
     <div>
       <FallingStraw />
+      <CherryBlossoms />
       <Hero />
       
       {/* About Section - Previously About Page Content */}
@@ -69,7 +71,7 @@ const Home = () => {
             <div 
               className="h-80 sm:h-64 bg-cover bg-center"
               style={{ 
-                backgroundImage: "url('/Castle Photos - Download Free High-Quality Pictures _ Freepik.jpeg')",
+                backgroundImage: "url('/abg.jpeg')",
               }}
             >
               <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80"></div>
