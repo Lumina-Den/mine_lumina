@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import * as THREE from 'three'
+import WalterWhite from './WalterWhite'
 
 const Hero = () => {
   const mountRef = useRef(null)
@@ -164,8 +165,8 @@ const Hero = () => {
       {/* Hero Content Container */}
       <div className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         {/* Welcome Text Section */}
-        <div className="text-center pb-12">
-          <div className="space-y-8">
+        <div className="text-center pb-4">
+          <div className="space-y-6">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white minecraft-shadow leading-tight">
               Welcome to LUMINA!
             </h1>
@@ -175,21 +176,27 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Info Cards Section */}
-        <div className="mt-16">
+        {/* Main Content Section - Character and Cards */}
+        <div className="space-y-8">
+          {/* Walter White Animation - Center */}
+          <div className="flex justify-center">
+            <WalterWhite />
+          </div>
+
+          {/* Info Cards - Below Character in Row */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {cards.map((card, index) => (
               <div
                 key={index}
-                className="bg-minecraft-dark border-4 border-black/50 p-6 relative z-10"
+                className="bg-minecraft-dark border-4 border-black/50 p-4 relative z-10"
               >
                 {/* Icon - Pixel art style */}
-                <div className="mb-6">
+                <div className="mb-4">
                   <PixelIcon type={card.iconType} />
                 </div>
                 
                 {/* Title */}
-                <h3 className="text-sm font-bold text-white mb-3 minecraft-shadow">
+                <h3 className="text-xs font-bold text-white mb-2 minecraft-shadow">
                   {card.title}
                 </h3>
                 
