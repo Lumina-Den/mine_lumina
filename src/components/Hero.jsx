@@ -1,118 +1,7 @@
-import React, { useEffect, useRef } from 'react'
-import * as THREE from 'three'
+import React from 'react'
 import WalterWhite from './WalterWhite'
 
 const Hero = () => {
-  const mountRef = useRef(null)
-
-  useEffect(() => {
-    // Cherry Blossom Three.js Animation
-    const scene = new THREE.Scene()
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true })
-    
-    renderer.setSize(window.innerWidth, window.innerHeight)
-    renderer.setClearColor(0x000000, 0) // Transparent background
-    
-    if (mountRef.current) {
-      mountRef.current.appendChild(renderer.domElement)
-    }
-
-    // Create cherry blossom petals
-    const petals = []
-    const petalGeometry = new THREE.PlaneGeometry(0.1, 0.1)
-    
-    // Create petal material with pink gradient
-    const petalMaterial = new THREE.MeshBasicMaterial({
-      color: 0xFFB6C1, // Light pink
-      transparent: true,
-      opacity: 0.8,
-      side: THREE.DoubleSide
-    })
-
-    // Create multiple petals
-    for (let i = 0; i < 80; i++) {
-      const petal = new THREE.Mesh(petalGeometry, petalMaterial.clone())
-      
-      // Random positioning
-      petal.position.x = (Math.random() - 0.5) * 20
-      petal.position.y = Math.random() * 15 + 5
-      petal.position.z = (Math.random() - 0.5) * 10
-      
-      // Random rotation
-      petal.rotation.x = Math.random() * Math.PI
-      petal.rotation.y = Math.random() * Math.PI
-      petal.rotation.z = Math.random() * Math.PI
-      
-      // Add random properties for animation
-      petal.userData = {
-        speedX: (Math.random() - 0.5) * 0.02,
-        speedY: -Math.random() * 0.03 - 0.01,
-        speedZ: (Math.random() - 0.5) * 0.02,
-        rotationSpeed: (Math.random() - 0.5) * 0.05,
-        swayAmplitude: Math.random() * 0.5 + 0.2,
-        swaySpeed: Math.random() * 0.02 + 0.01
-      }
-      
-      scene.add(petal)
-      petals.push(petal)
-    }
-
-    camera.position.z = 5
-
-    // Animation loop
-    const animate = () => {
-      requestAnimationFrame(animate)
-
-      petals.forEach((petal, index) => {
-        // Falling motion
-        petal.position.y += petal.userData.speedY
-        
-        // Swaying motion
-        petal.position.x += Math.sin(Date.now() * petal.userData.swaySpeed + index) * petal.userData.swayAmplitude * 0.001
-        petal.position.z += petal.userData.speedZ
-        
-        // Rotation
-        petal.rotation.x += petal.userData.rotationSpeed
-        petal.rotation.y += petal.userData.rotationSpeed * 0.5
-        petal.rotation.z += petal.userData.rotationSpeed * 0.3
-        
-        // Reset position when petal falls too low
-        if (petal.position.y < -10) {
-          petal.position.y = Math.random() * 5 + 10
-          petal.position.x = (Math.random() - 0.5) * 20
-          petal.position.z = (Math.random() - 0.5) * 10
-        }
-        
-        // Keep petals within bounds
-        if (Math.abs(petal.position.x) > 12) {
-          petal.position.x = (Math.random() - 0.5) * 20
-        }
-      })
-
-      renderer.render(scene, camera)
-    }
-
-    animate()
-
-    // Handle window resize
-    const handleResize = () => {
-      camera.aspect = window.innerWidth / window.innerHeight
-      camera.updateProjectionMatrix()
-      renderer.setSize(window.innerWidth, window.innerHeight)
-    }
-    
-    window.addEventListener('resize', handleResize)
-
-    // Cleanup
-    return () => {
-      window.removeEventListener('resize', handleResize)
-      if (mountRef.current && renderer.domElement) {
-        mountRef.current.removeChild(renderer.domElement)
-      }
-      renderer.dispose()
-    }
-  }, [])
   // Icon components matching the provided design
   const PixelIcon = ({ type }) => {
     const icons = {
@@ -165,13 +54,6 @@ const Hero = () => {
       
       {/* Dark overlay for better contrast */}
       <div className="absolute inset-0 bg-minecraft-darker/70" />
-      
-      {/* Three.js Cherry Blossom Animation Background */}
-      <div 
-        ref={mountRef} 
-        className="absolute inset-0 z-10 pointer-events-none"
-        style={{ mixBlendMode: 'screen' }}
-      />
       
       {/* Hero Content Container */}
       <div className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
