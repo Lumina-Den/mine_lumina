@@ -43,7 +43,6 @@ const Hero = () => {
 
   return (
     <section className="relative min-h-screen pt-20 pb-16 overflow-hidden flex items-center">
-      {/* Background Image */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
         style={{ 
