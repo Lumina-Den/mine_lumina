@@ -33,7 +33,7 @@ const Home = () => {
       text: 'Conquer the Ender Dragon as a team each season.',
     },
     {
-      icon: '�️',
+      icon: '🏗️',
       text: 'Build a massive, collaborative capital city.',
     },
     {
@@ -48,11 +48,11 @@ const Home = () => {
       text: 'Server-First Wither Kill Trophy.',
     },
     {
-      icon: '�',
+      icon: '🏅',
       text: 'Winner of the Annual Build Competition.',
     },
     {
-      icon: '🏆',
+      icon: '🗺️',
       text: 'Mapped the entire Overworld continent.',
     },
   ]
