@@ -2,7 +2,6 @@ import React from 'react'
 import WalterWhite from './WalterWhite'
 
 const Hero = () => {
-  // Icon components matching the provided design
   const PixelIcon = ({ type }) => {
     const icons = {
       news: (
