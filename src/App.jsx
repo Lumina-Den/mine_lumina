@@ -7,6 +7,8 @@ import EventsPage from './pages/EventsPage'
 import JoinClanPage from './pages/JoinClanPage'
 import RulesPage from './pages/RulesPage'
 import MemberProfilePage from './pages/MemberProfilePage'
+import ProjectShowcasePage from './pages/ProjectShowcasePage'
+import ProjectShowcaseRegisterPage from './pages/ProjectShowcaseRegisterPage'
 import DynamicCursor from './components/DynamicCursor'
 
 function App() {
@@ -30,6 +32,8 @@ function App() {
           <Route path="/members" element={<MembersPage />} />
           <Route path="/member/:id" element={<MemberProfilePage />} />
           <Route path="/events" element={<EventsPage />} />
+          <Route path="/events/project-showcase" element={<ProjectShowcasePage />} />
+          <Route path="/events/project-showcase/register" element={<ProjectShowcaseRegisterPage />} />
           <Route path="/join" element={<JoinClanPage />} />
           <Route path="/rules" element={<RulesPage />} />
         </Routes>
