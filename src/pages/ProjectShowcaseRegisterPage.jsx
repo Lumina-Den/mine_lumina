@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react'
+import emailjs from '@emailjs/browser'
 import { supabase, PROJECT_SHOWCASE_EVENT_ID } from '../lib/supabaseClient'
 
 const initialFormState = {
@@ -8,12 +9,19 @@ const initialFormState = {
   year: '',
   section: '',
   clan: '',
+  email: '',
   project_title: '',
   description: '',
   category: '',
 }
 
 const clans = ['Aura7f', 'Belmonts', 'Lumina', 'Shadastria Adepti']
+const departments = ['CSE', 'AI & DS']
+const sections = ['A', 'B']
+
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
 
 const ProjectShowcaseRegisterPage = () => {
   const [formValues, setFormValues] = useState(initialFormState)
@@ -25,7 +33,7 @@ const ProjectShowcaseRegisterPage = () => {
 
   const slotMessages = useMemo(
     () => [
-      'Slots lock in the moment you submit. If all 15 are gone, registration will throw an error.',
+      'Slots lock in the moment you submit. If all 20 are gone, registration will throw an error.',
       'Check the schedule table below right after submitting — your slot should appear instantly.',
       'Need a swap after assignment? Ping the clan council so they can release an occupied slot.',
       'Keep your details accurate. Each registration reserves one unique showcase slot automatically.'
@@ -110,7 +118,11 @@ const ProjectShowcaseRegisterPage = () => {
       event_id: PROJECT_SHOWCASE_EVENT_ID,
     }
 
-    const { error } = await supabase.from('registrations').insert(payload)
+    const { data, error } = await supabase
+      .from('registrations')
+      .insert(payload)
+      .select('id, slot')
+      .single()
 
     if (error) {
       console.error('[Supabase] Registration insert failed', error)
@@ -125,7 +137,38 @@ const ProjectShowcaseRegisterPage = () => {
       return
     }
 
-    setStatusMessage('Registered successfully. Your slot is now live in the showcase lineup below.')
+    const assignedSlot = data?.slot ?? 'Pending'
+    const canSendEmail = Boolean(
+      EMAILJS_SERVICE_ID && EMAILJS_TEMPLATE_ID && EMAILJS_PUBLIC_KEY && formValues.email
+    )
+    const confirmationMessage =
+      assignedSlot && assignedSlot !== 'Pending'
+        ? `Registered successfully. Your slot is ${assignedSlot}. ${
+            canSendEmail ? 'Check your inbox for confirmation.' : 'Save this slot number for reference.'
+          }`
+        : 'Registered successfully. Slot assignment is processing — refresh in a few seconds.'
+
+    if (canSendEmail && assignedSlot && assignedSlot !== 'Pending') {
+      emailjs
+        .send(
+          EMAILJS_SERVICE_ID,
+          EMAILJS_TEMPLATE_ID,
+          {
+            to_name: formValues.name,
+            to_email: formValues.email,
+            slot_label: assignedSlot,
+            event_name: 'Project Showcase',
+          },
+          {
+            publicKey: EMAILJS_PUBLIC_KEY,
+          }
+        )
+        .catch((err) => {
+          console.error('[EmailJS] Failed to send confirmation email', err)
+        })
+    }
+
+    setStatusMessage(confirmationMessage)
     setStatusType('success')
     setFormValues(initialFormState)
   }
@@ -176,16 +219,35 @@ const ProjectShowcaseRegisterPage = () => {
                 />
               </label>
               <label className="flex flex-col gap-2 text-xs tracking-[0.2em] uppercase">
-                Department
+                Email
                 <input
                   className="px-4 py-3 rounded-xl bg-[#05110e] border border-[#4dffb7]/20 text-sm"
+                  name="email"
+                  type="email"
+                  required
+                  value={formValues.email}
+                  onChange={handleChange}
+                  placeholder="you@example.com"
+                />
+              </label>
+              <label className="flex flex-col gap-2 text-xs tracking-[0.2em] uppercase">
+                Department
+                <select
+                  className="px-4 py-3 rounded-xl bg-[#05110e] border border-[#4dffb7]/20 text-sm"
                   name="department"
-                  type="text"
                   required
                   value={formValues.department}
                   onChange={handleChange}
-                  placeholder="Computer Science & Engineering"
-                />
+                >
+                  <option value="" disabled>
+                    Select department
+                  </option>
+                  {departments.map((dept) => (
+                    <option key={dept} value={dept}>
+                      {dept}
+                    </option>
+                  ))}
+                </select>
               </label>
               <label className="flex flex-col gap-2 text-xs tracking-[0.2em] uppercase">
                 Year
@@ -207,16 +269,22 @@ const ProjectShowcaseRegisterPage = () => {
               </label>
               <label className="flex flex-col gap-2 text-xs tracking-[0.2em] uppercase">
                 Section
-                <input
+                <select
                   className="px-4 py-3 rounded-xl bg-[#05110e] border border-[#4dffb7]/20 text-sm"
                   name="section"
-                  type="text"
                   required
-                  maxLength={2}
                   value={formValues.section}
                   onChange={handleChange}
-                  placeholder="A/B"
-                />
+                >
+                  <option value="" disabled>
+                    Select section
+                  </option>
+                  {sections.map((section) => (
+                    <option key={section} value={section}>
+                      {section}
+                    </option>
+                  ))}
+                </select>
               </label>
               <label className="flex flex-col gap-2 text-xs tracking-[0.2em] uppercase">
                 Clan
