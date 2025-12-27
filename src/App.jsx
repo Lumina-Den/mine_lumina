@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import MembersPage from './pages/MembersPage'
@@ -10,6 +10,16 @@ import MemberProfilePage from './pages/MemberProfilePage'
 import ProjectShowcasePage from './pages/ProjectShowcasePage'
 import ProjectShowcaseRegisterPage from './pages/ProjectShowcaseRegisterPage'
 import DynamicCursor from './components/DynamicCursor'
+
+function ScrollRestoration() {
+  const location = useLocation()
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+  }, [location.pathname])
+
+  return null
+}
 
 function App() {
   const [scrolled, setScrolled] = useState(false)
@@ -26,6 +36,7 @@ function App() {
     <Router>
       <div className="min-h-screen overflow-x-hidden" style={{ cursor: 'none' }}>
         <DynamicCursor />
+        <ScrollRestoration />
         <Navbar scrolled={scrolled} />
         <Routes>
           <Route path="/" element={<Home />} />
