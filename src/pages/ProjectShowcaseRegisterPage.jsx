@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import emailjs from '@emailjs/browser'
 import { supabase, PROJECT_SHOWCASE_EVENT_ID } from '../lib/supabaseClient'
 
 const initialFormState = {
@@ -18,10 +17,6 @@ const initialFormState = {
 const clans = ['Aura7f', 'Belmonts', 'Lumina', 'Shadastria Adepti']
 const departments = ['CSE', 'AI & DS']
 const sections = ['A', 'B']
-
-const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID
-const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
-const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
 
 const ProjectShowcaseRegisterPage = () => {
   const [formValues, setFormValues] = useState(initialFormState)
@@ -138,43 +133,10 @@ const ProjectShowcaseRegisterPage = () => {
     }
 
     const assignedSlot = data?.slot ?? 'Pending'
-    const canSendEmail = Boolean(
-      EMAILJS_SERVICE_ID && EMAILJS_TEMPLATE_ID && EMAILJS_PUBLIC_KEY && formValues.email
-    )
     const slotConfirmed = assignedSlot && assignedSlot !== 'Pending'
-    let emailFailed = false
-
-    if (canSendEmail && slotConfirmed) {
-      try {
-        await emailjs.send(
-          EMAILJS_SERVICE_ID,
-          EMAILJS_TEMPLATE_ID,
-          {
-            to_name: formValues.name,
-            to_email: formValues.email,
-            slot_label: assignedSlot,
-            slot: assignedSlot,
-            project_title: formValues.project_title,
-            event_name: 'Project Showcase',
-          },
-          {
-            publicKey: EMAILJS_PUBLIC_KEY,
-          }
-        )
-      } catch (err) {
-        emailFailed = true
-        console.error('[EmailJS] Failed to send confirmation email', err)
-      }
-    }
 
     const confirmationMessage = slotConfirmed
-      ? `Registered successfully. Your slot is ${assignedSlot}. ${
-          canSendEmail
-            ? emailFailed
-              ? 'We could not send the email. Save this slot number and contact the council if you need help.'
-              : 'Check your inbox for confirmation.'
-            : 'Save this slot number for reference.'
-        }`
+      ? `Registered successfully. Your slot is ${assignedSlot}. Save this slot number for reference.`
       : 'Registered successfully. Slot assignment is processing — refresh in a few seconds.'
 
     setStatusMessage(confirmationMessage)
