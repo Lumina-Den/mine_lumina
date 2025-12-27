@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const EVENTS = [
   {
     title: 'Project Showcase',
-    date: 'March 15, 2025 · 16:00 UTC',
+    date: 'Jan-02, 2026 · 16:00 UTC',
     description:
       'Registration is live right now. Bring your build, your deck, your best clan tech to the main stage.',
     cta: 'Register Now',
