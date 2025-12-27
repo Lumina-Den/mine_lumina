@@ -146,7 +146,7 @@ const ProjectShowcaseRegisterPage = () => {
         ? `Registered successfully. Your slot is ${assignedSlot}. ${
             canSendEmail ? 'Check your inbox for confirmation.' : 'Save this slot number for reference.'
           }`
-        : 'Registered successfully. Slot assignment is processing — refresh in a few seconds.'
+        : 'Registered successfully. Slot assignment is processing — refresh in a few seconds, before that check your email'
 
     if (canSendEmail && assignedSlot && assignedSlot !== 'Pending') {
       emailjs
