@@ -109,7 +109,7 @@ begin
   from public.event_slots
   where event_id = new.event_id
     and assigned_registration is null
-  order by slot_label asc
+  order by random()
   limit 1
   for update skip locked;
 

@@ -37,12 +37,12 @@ async function assignSlots() {
     return []
   }
 
-  const orderedSlots = [...freeSlots].sort((a, b) => a.slot_label.localeCompare(b.slot_label))
+  const shuffledSlots = [...freeSlots].sort(() => Math.random() - 0.5)
   const assignments = []
 
-  for (let i = 0; i < pending.length && i < orderedSlots.length; i += 1) {
+  for (let i = 0; i < pending.length && i < shuffledSlots.length; i += 1) {
     const registrationId = pending[i].id
-    const slot = orderedSlots[i]
+    const slot = shuffledSlots[i]
 
     const { error: updateRegistrationError } = await supabase
       .from('registrations')
