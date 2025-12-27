@@ -36,7 +36,7 @@ const ProjectShowcaseRegisterPage = () => {
       'Slots lock in the moment you submit. If all 20 are gone, registration will throw an error.',
       'Check the schedule table below right after submitting — your slot should appear instantly.',
       'Need a swap after assignment? Ping the clan council so they can release an occupied slot.',
-      'Keep your details accurate. Each registration reserves one unique showcase slot automatically.'
+      'Keep your details accurate. Each registration reserves one unique showcase slot automatically.',
     ],
     []
   )
@@ -141,32 +141,41 @@ const ProjectShowcaseRegisterPage = () => {
     const canSendEmail = Boolean(
       EMAILJS_SERVICE_ID && EMAILJS_TEMPLATE_ID && EMAILJS_PUBLIC_KEY && formValues.email
     )
-    const confirmationMessage =
-      assignedSlot && assignedSlot !== 'Pending'
-        ? `Registered successfully. Your slot is ${assignedSlot}. ${
-            canSendEmail ? 'Check your inbox for confirmation.' : 'Save this slot number for reference.'
-          }`
-        : 'Registered successfully. Slot assignment is processing — refresh in a few seconds, before that check your email'
+    const slotConfirmed = assignedSlot && assignedSlot !== 'Pending'
+    let emailFailed = false
 
-    if (canSendEmail && assignedSlot && assignedSlot !== 'Pending') {
-      emailjs
-        .send(
+    if (canSendEmail && slotConfirmed) {
+      try {
+        await emailjs.send(
           EMAILJS_SERVICE_ID,
           EMAILJS_TEMPLATE_ID,
           {
             to_name: formValues.name,
             to_email: formValues.email,
             slot_label: assignedSlot,
+            slot: assignedSlot,
+            project_title: formValues.project_title,
             event_name: 'Project Showcase',
           },
           {
             publicKey: EMAILJS_PUBLIC_KEY,
           }
         )
-        .catch((err) => {
-          console.error('[EmailJS] Failed to send confirmation email', err)
-        })
+      } catch (err) {
+        emailFailed = true
+        console.error('[EmailJS] Failed to send confirmation email', err)
+      }
     }
+
+    const confirmationMessage = slotConfirmed
+      ? `Registered successfully. Your slot is ${assignedSlot}. ${
+          canSendEmail
+            ? emailFailed
+              ? 'We could not send the email. Save this slot number and contact the council if you need help.'
+              : 'Check your inbox for confirmation.'
+            : 'Save this slot number for reference.'
+        }`
+      : 'Registered successfully. Slot assignment is processing — refresh in a few seconds.'
 
     setStatusMessage(confirmationMessage)
     setStatusType('success')
@@ -174,12 +183,9 @@ const ProjectShowcaseRegisterPage = () => {
   }
 
   return (
-    <main className="min-h-screen bg-[#050c0a] text-[#ecfff6] px-6 pt-32 pb-16">
+    <main className="min-h-screen bg-[#050c0a] text-[#ecfff6] px-4 sm:px-6 lg:px-8 pt-32 pb-16">
       <div className="max-w-5xl mx-auto grid gap-12">
         <section className="space-y-4">
-          {/* <span className="inline-flex items-center px-4 py-2 rounded-full border border-[#7bffce]/50 bg-[#7bffce]/10 text-[#7bffce] text-[10px] font-semibold tracking-[0.35em] uppercase">
-            Featured · Registration Open
-          </span> */}
           <h1 className="text-3xl sm:text-4xl font-extrabold tracking-[0.25em] uppercase text-white">
             Project Showcase Registration
           </h1>
@@ -190,14 +196,14 @@ const ProjectShowcaseRegisterPage = () => {
 
         <section>
           <form
-            className="bg-[#091915]/85 border border-[#4dffb7]/35 rounded-3xl p-8 grid gap-6"
+            className="bg-[#091915]/85 border border-[#4dffb7]/35 rounded-3xl p-6 sm:p-8 grid gap-6"
             onSubmit={handleSubmit}
           >
             <div className="grid gap-5 md:grid-cols-2">
-              <label className="flex flex-col gap-2 text-xs tracking-[0.2em] uppercase">
+              <label className="flex flex-col gap-2 uppercase text-[11px] tracking-[0.12em] sm:text-xs sm:tracking-[0.2em]">
                 Full Name
                 <input
-                  className="px-4 py-3 rounded-xl bg-[#05110e] border border-[#4dffb7]/20 text-sm"
+                  className="w-full px-4 py-3 rounded-xl bg-[#05110e] border border-[#4dffb7]/20 text-sm"
                   name="name"
                   type="text"
                   required
@@ -206,10 +212,10 @@ const ProjectShowcaseRegisterPage = () => {
                   placeholder="Steve"
                 />
               </label>
-              <label className="flex flex-col gap-2 text-xs tracking-[0.2em] uppercase">
+              <label className="flex flex-col gap-2 uppercase text-[11px] tracking-[0.12em] sm:text-xs sm:tracking-[0.2em]">
                 Registration No.
                 <input
-                  className="px-4 py-3 rounded-xl bg-[#05110e] border border-[#4dffb7]/20 text-sm"
+                  className="w-full px-4 py-3 rounded-xl bg-[#05110e] border border-[#4dffb7]/20 text-sm"
                   name="reg_no"
                   type="text"
                   required
@@ -218,10 +224,10 @@ const ProjectShowcaseRegisterPage = () => {
                   placeholder="23RUAI063"
                 />
               </label>
-              <label className="flex flex-col gap-2 text-xs tracking-[0.2em] uppercase">
+              <label className="flex flex-col gap-2 uppercase text-[11px] tracking-[0.12em] sm:text-xs sm:tracking-[0.2em]">
                 Email
                 <input
-                  className="px-4 py-3 rounded-xl bg-[#05110e] border border-[#4dffb7]/20 text-sm"
+                  className="w-full px-4 py-3 rounded-xl bg-[#05110e] border border-[#4dffb7]/20 text-sm"
                   name="email"
                   type="email"
                   required
@@ -230,10 +236,10 @@ const ProjectShowcaseRegisterPage = () => {
                   placeholder="you@example.com"
                 />
               </label>
-              <label className="flex flex-col gap-2 text-xs tracking-[0.2em] uppercase">
+              <label className="flex flex-col gap-2 uppercase text-[11px] tracking-[0.12em] sm:text-xs sm:tracking-[0.2em]">
                 Department
                 <select
-                  className="px-4 py-3 rounded-xl bg-[#05110e] border border-[#4dffb7]/20 text-sm"
+                  className="w-full px-4 py-3 rounded-xl bg-[#05110e] border border-[#4dffb7]/20 text-sm"
                   name="department"
                   required
                   value={formValues.department}
@@ -249,10 +255,10 @@ const ProjectShowcaseRegisterPage = () => {
                   ))}
                 </select>
               </label>
-              <label className="flex flex-col gap-2 text-xs tracking-[0.2em] uppercase">
+              <label className="flex flex-col gap-2 uppercase text-[11px] tracking-[0.12em] sm:text-xs sm:tracking-[0.2em]">
                 Year
                 <select
-                  className="px-4 py-3 rounded-xl bg-[#05110e] border border-[#4dffb7]/20 text-sm"
+                  className="w-full px-4 py-3 rounded-xl bg-[#05110e] border border-[#4dffb7]/20 text-sm"
                   name="year"
                   required
                   value={formValues.year}
@@ -267,10 +273,10 @@ const ProjectShowcaseRegisterPage = () => {
                   <option value="4">4</option>
                 </select>
               </label>
-              <label className="flex flex-col gap-2 text-xs tracking-[0.2em] uppercase">
+              <label className="flex flex-col gap-2 uppercase text-[11px] tracking-[0.12em] sm:text-xs sm:tracking-[0.2em]">
                 Section
                 <select
-                  className="px-4 py-3 rounded-xl bg-[#05110e] border border-[#4dffb7]/20 text-sm"
+                  className="w-full px-4 py-3 rounded-xl bg-[#05110e] border border-[#4dffb7]/20 text-sm"
                   name="section"
                   required
                   value={formValues.section}
@@ -286,10 +292,10 @@ const ProjectShowcaseRegisterPage = () => {
                   ))}
                 </select>
               </label>
-              <label className="flex flex-col gap-2 text-xs tracking-[0.2em] uppercase">
+              <label className="flex flex-col gap-2 uppercase text-[11px] tracking-[0.12em] sm:text-xs sm:tracking-[0.2em]">
                 Clan
                 <select
-                  className="px-4 py-3 rounded-xl bg-[#05110e] border border-[#4dffb7]/20 text-sm"
+                  className="w-full px-4 py-3 rounded-xl bg-[#05110e] border border-[#4dffb7]/20 text-sm"
                   name="clan"
                   required
                   value={formValues.clan}
@@ -305,10 +311,10 @@ const ProjectShowcaseRegisterPage = () => {
                   ))}
                 </select>
               </label>
-              <label className="flex flex-col gap-2 text-xs tracking-[0.2em] uppercase md:col-span-2">
+              <label className="flex flex-col gap-2 uppercase text-[11px] tracking-[0.12em] sm:text-xs sm:tracking-[0.2em] md:col-span-2">
                 Project Title
                 <input
-                  className="px-4 py-3 rounded-xl bg-[#05110e] border border-[#4dffb7]/20 text-sm"
+                  className="w-full px-4 py-3 rounded-xl bg-[#05110e] border border-[#4dffb7]/20 text-sm"
                   name="project_title"
                   type="text"
                   required
@@ -316,10 +322,10 @@ const ProjectShowcaseRegisterPage = () => {
                   onChange={handleChange}
                 />
               </label>
-              <label className="flex flex-col gap-2 text-xs tracking-[0.2em] uppercase md:col-span-2">
+              <label className="flex flex-col gap-2 uppercase text-[11px] tracking-[0.12em] sm:text-xs sm:tracking-[0.2em] md:col-span-2">
                 Category
                 <input
-                  className="px-4 py-3 rounded-xl bg-[#05110e] border border-[#4dffb7]/20 text-sm"
+                  className="w-full px-4 py-3 rounded-xl bg-[#05110e] border border-[#4dffb7]/20 text-sm"
                   name="category"
                   type="text"
                   required
@@ -330,10 +336,10 @@ const ProjectShowcaseRegisterPage = () => {
               </label>
             </div>
 
-            <label className="flex flex-col gap-2 text-xs tracking-[0.2em] uppercase">
+            <label className="flex flex-col gap-2 uppercase text-[11px] tracking-[0.12em] sm:text-xs sm:tracking-[0.2em]">
               Project Description
               <textarea
-                className="px-4 py-3 rounded-xl bg-[#05110e] border border-[#4dffb7]/20 text-sm min-h-[140px]"
+                className="w-full px-4 py-3 rounded-xl bg-[#05110e] border border-[#4dffb7]/20 text-sm min-h-[140px]"
                 name="description"
                 required
                 value={formValues.description}
@@ -344,7 +350,7 @@ const ProjectShowcaseRegisterPage = () => {
 
             {statusMessage && (
               <p
-                className={`text-xs tracking-[0.15em] uppercase ${
+                className={`text-[11px] tracking-[0.1em] uppercase sm:text-xs sm:tracking-[0.15em] ${
                   statusType === 'error'
                     ? 'text-[#ff8f8f]'
                     : statusType === 'success'
@@ -368,7 +374,7 @@ const ProjectShowcaseRegisterPage = () => {
           </form>
         </section>
 
-        <section className="bg-[#091915]/85 border border-[#4dffb7]/35 rounded-3xl p-8">
+        <section className="bg-[#091915]/85 border border-[#4dffb7]/35 rounded-3xl p-6 sm:p-8">
           <h2 className="text-2xl font-extrabold tracking-[0.25em] uppercase text-white mb-6">
             Schedule Line-Up
           </h2>
@@ -396,16 +402,19 @@ const ProjectShowcaseRegisterPage = () => {
                     </td>
                   </tr>
                 ) : (
-                  schedule.map((entry) => (
-                    <tr key={`${entry.reg_no ?? entry.name}-${entry.slot ?? 'pending'}`} className="odd:bg-[#0b1f17]/60">
-                      <td className="px-4 py-3 text-[#7debb9] tracking-[0.15em] uppercase">
-                        {entry.slot ?? 'Pending'}
-                      </td>
-                      <td className="px-4 py-3">{entry.name}</td>
-                      <td className="px-4 py-3 text-[#c9f6dd]">{entry.clan ?? '—'}</td>
-                      <td className="px-4 py-3 text-[#c9f6dd]">{entry.project_title}</td>
-                    </tr>
-                  ))
+                  schedule
+                    .slice()
+                    .sort((a, b) => (a.slot ?? '').localeCompare(b.slot ?? ''))
+                    .map((entry) => (
+                      <tr key={`${entry.reg_no ?? entry.name}-${entry.slot ?? 'pending'}`} className="odd:bg-[#0b1f17]/60">
+                        <td className="px-4 py-3 text-[#7debb9] tracking-[0.15em] uppercase">
+                          {entry.slot ?? 'Pending'}
+                        </td>
+                        <td className="px-4 py-3">{entry.name}</td>
+                        <td className="px-4 py-3 text-[#c9f6dd]">{entry.clan ?? '—'}</td>
+                        <td className="px-4 py-3 text-[#c9f6dd]">{entry.project_title}</td>
+                      </tr>
+                    ))
                 )}
               </tbody>
             </table>
