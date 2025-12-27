@@ -7,7 +7,6 @@ export const membersData = [
     id: 'vishal',
     name: 'Vishal',
     imageName: 'Vishal.webp',
-    role: 'Akagami',
     type: 'captain',
     bounty: '1,000,000,000',
     bgColor: 'bg-gradient-to-br from-amber-900/90 to-yellow-900/90',
@@ -20,7 +19,6 @@ export const membersData = [
     id: 'ajisha',
     name: 'Ajisha',
     imageName: 'Ajisha.webp',
-    role: 'Cat Burglar',
     type: 'captain',
     bounty: '950,000,000',
     bgColor: 'bg-gradient-to-br from-orange-900/90 to-amber-900/90',
@@ -34,7 +32,6 @@ export const membersData = [
     id: 'abin',
     name: 'Abin',
     imageName: 'Abin.webp',
-    role: 'Captain of the Worst Generation',
     type: 'member',
     bounty: '320,000,000',
     bgColor: 'bg-gradient-to-br from-yellow-900/80 to-amber-900/80',
@@ -47,7 +44,6 @@ export const membersData = [
     id: 'akshaya',
     name: 'Akshaya',
     imageName: 'Akshaya.webp',
-    role: 'Devil Child',
     type: 'member',
     bounty: '280,000,000',
     bgColor: 'bg-gradient-to-br from-yellow-900/80 to-amber-900/80',
@@ -60,7 +56,6 @@ export const membersData = [
     id: 'aparna',
     name: 'Aparna',
     imageName: 'Aparna.webp',
-    role: 'Pirate Empress',
     type: 'member',
     bounty: '300,000,000',
     bgColor: 'bg-gradient-to-br from-yellow-900/80 to-amber-900/80',
@@ -73,7 +68,6 @@ export const membersData = [
     id: 'falin',
     name: 'Falin',
     imageName: 'Falin.webp',
-    role: 'Black Leg',
     type: 'member',
     bounty: '250,000,000',
     bgColor: 'bg-gradient-to-br from-yellow-900/80 to-amber-900/80',
@@ -86,7 +80,6 @@ export const membersData = [
     id: 'hamdhan',
     name: 'Hamdhan',
     imageName: 'Hamdhan.webp',
-    role: 'Fire Fist',
     type: 'member',
     bounty: '310,000,000',
     bgColor: 'bg-gradient-to-br from-yellow-900/80 to-amber-900/80',
@@ -99,7 +92,6 @@ export const membersData = [
     id: 'jenish',
     name: 'Jenish',
     imageName: 'Jenish.webp',
-    role: 'Surgeon of Death',
     type: 'member',
     bounty: '270,000,000',
     bgColor: 'bg-gradient-to-br from-yellow-900/80 to-amber-900/80',
@@ -112,7 +104,6 @@ export const membersData = [
     id: 'nithisha',
     name: 'Nithisha',
     imageName: 'Nithisha.webp',
-    role: 'Moon Princess',
     type: 'member',
     bounty: '290,000,000',
     bgColor: 'bg-gradient-to-br from-yellow-900/80 to-amber-900/80',
@@ -125,7 +116,6 @@ export const membersData = [
     id: 'tony',
     name: 'Tony',
     imageName: 'Tony.webp',
-    role: 'Pirate Hunter',
     type: 'member',
     bounty: '330,000,000',
     bgColor: 'bg-gradient-to-br from-yellow-900/80 to-amber-900/80',
@@ -213,12 +203,9 @@ const Members = () => {
                   </div>
                 </Link>
                 <div className="mt-4">
-                  <h3 className={`${captain.textColor} text-xl font-bold mb-1 bounty-subtitle minecraft-shadow`}>
+                  <h3 className={`${captain.textColor} text-xl font-bold bounty-subtitle minecraft-shadow`}>
                     {captain.name}
                   </h3>
-                  <p className={`${captain.roleColor} text-sm font-bold mb-1`}>
-                    {captain.role}
-                  </p>
                 </div>
               </div>
             ))}
@@ -248,12 +235,9 @@ const Members = () => {
                   </div>
                 </Link>
                 <div className="mt-3">
-                  <h3 className={`${member.textColor} text-sm font-bold mb-1 bounty-subtitle minecraft-shadow`}>
+                  <h3 className={`${member.textColor} text-sm font-bold bounty-subtitle minecraft-shadow`}>
                     {member.name}
                   </h3>
-                  <p className={`text-xs font-semibold ${member.roleColor}`}>
-                    {member.role}
-                  </p>
                 </div>
               </div>
             ))}
