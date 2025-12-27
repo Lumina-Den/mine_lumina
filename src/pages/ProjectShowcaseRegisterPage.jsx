@@ -145,8 +145,8 @@ const ProjectShowcaseRegisterPage = () => {
   }
 
   return (
-    <main className="min-h-screen w-full overflow-x-hidden bg-[#050c0a] text-[#ecfff6] px-4 sm:px-6 lg:px-8 pt-32 pb-16">
-      <div className="max-w-5xl mx-auto grid gap-12 px-1">
+    <main className="min-h-screen w-full overflow-x-hidden bg-[#050c0a] text-[#ecfff6] px-3 sm:px-6 lg:px-8 pt-32 pb-16">
+      <div className="max-w-5xl mx-auto grid gap-12 w-full">
         <section className="space-y-4">
           <h1 className="text-3xl sm:text-4xl font-extrabold tracking-[0.1em] sm:tracking-[0.25em] uppercase text-white">
             Project Showcase Registration
@@ -156,16 +156,16 @@ const ProjectShowcaseRegisterPage = () => {
           </p>
         </section>
 
-        <section className="px-0 sm:px-4">
+        <section className="w-full">
           <form
-            className="w-full max-w-3xl mx-auto bg-[#091915]/85 border border-[#4dffb7]/35 rounded-3xl px-4 py-6 sm:px-8 sm:py-8 grid gap-6"
+            className="w-full max-w-3xl mx-auto bg-[#091915]/85 border border-[#4dffb7]/35 rounded-2xl sm:rounded-3xl px-3 py-5 sm:px-8 sm:py-8 grid gap-6"
             onSubmit={handleSubmit}
           >
-            <div className="grid gap-5 md:grid-cols-2">
+            <div className="grid gap-4 sm:gap-5 md:grid-cols-2">
               <label className="flex flex-col gap-2 uppercase text-[11px] tracking-[0.12em] sm:text-xs sm:tracking-[0.2em]">
                 Full Name
                 <input
-                  className="w-full px-4 py-3 rounded-xl bg-[#05110e] border border-[#4dffb7]/20 text-sm"
+                  className="w-full px-3 py-2.5 sm:px-4 sm:py-3 rounded-xl bg-[#05110e] border border-[#4dffb7]/20 text-sm"
                   name="name"
                   type="text"
                   required
@@ -177,7 +177,7 @@ const ProjectShowcaseRegisterPage = () => {
               <label className="flex flex-col gap-2 uppercase text-[11px] tracking-[0.12em] sm:text-xs sm:tracking-[0.2em]">
                 Registration No.
                 <input
-                  className="w-full px-4 py-3 rounded-xl bg-[#05110e] border border-[#4dffb7]/20 text-sm"
+                  className="w-full px-3 py-2.5 sm:px-4 sm:py-3 rounded-xl bg-[#05110e] border border-[#4dffb7]/20 text-sm"
                   name="reg_no"
                   type="text"
                   required
@@ -189,7 +189,7 @@ const ProjectShowcaseRegisterPage = () => {
               <label className="flex flex-col gap-2 uppercase text-[11px] tracking-[0.12em] sm:text-xs sm:tracking-[0.2em]">
                 Email
                 <input
-                  className="w-full px-4 py-3 rounded-xl bg-[#05110e] border border-[#4dffb7]/20 text-sm"
+                  className="w-full px-3 py-2.5 sm:px-4 sm:py-3 rounded-xl bg-[#05110e] border border-[#4dffb7]/20 text-sm"
                   name="email"
                   type="email"
                   required
@@ -201,7 +201,7 @@ const ProjectShowcaseRegisterPage = () => {
               <label className="flex flex-col gap-2 uppercase text-[11px] tracking-[0.12em] sm:text-xs sm:tracking-[0.2em]">
                 Department
                 <select
-                  className="w-full px-4 py-3 rounded-xl bg-[#05110e] border border-[#4dffb7]/20 text-sm"
+                  className="w-full px-3 py-2.5 sm:px-4 sm:py-3 rounded-xl bg-[#05110e] border border-[#4dffb7]/20 text-sm"
                   name="department"
                   required
                   value={formValues.department}
@@ -220,7 +220,7 @@ const ProjectShowcaseRegisterPage = () => {
               <label className="flex flex-col gap-2 uppercase text-[11px] tracking-[0.12em] sm:text-xs sm:tracking-[0.2em]">
                 Year
                 <select
-                  className="w-full px-4 py-3 rounded-xl bg-[#05110e] border border-[#4dffb7]/20 text-sm"
+                  className="w-full px-3 py-2.5 sm:px-4 sm:py-3 rounded-xl bg-[#05110e] border border-[#4dffb7]/20 text-sm"
                   name="year"
                   required
                   value={formValues.year}
@@ -238,7 +238,7 @@ const ProjectShowcaseRegisterPage = () => {
               <label className="flex flex-col gap-2 uppercase text-[11px] tracking-[0.12em] sm:text-xs sm:tracking-[0.2em]">
                 Section
                 <select
-                  className="w-full px-4 py-3 rounded-xl bg-[#05110e] border border-[#4dffb7]/20 text-sm"
+                  className="w-full px-3 py-2.5 sm:px-4 sm:py-3 rounded-xl bg-[#05110e] border border-[#4dffb7]/20 text-sm"
                   name="section"
                   required
                   value={formValues.section}
@@ -257,7 +257,7 @@ const ProjectShowcaseRegisterPage = () => {
               <label className="flex flex-col gap-2 uppercase text-[11px] tracking-[0.12em] sm:text-xs sm:tracking-[0.2em]">
                 Clan
                 <select
-                  className="w-full px-4 py-3 rounded-xl bg-[#05110e] border border-[#4dffb7]/20 text-sm"
+                  className="w-full px-3 py-2.5 sm:px-4 sm:py-3 rounded-xl bg-[#05110e] border border-[#4dffb7]/20 text-sm"
                   name="clan"
                   required
                   value={formValues.clan}
@@ -276,7 +276,7 @@ const ProjectShowcaseRegisterPage = () => {
               <label className="flex flex-col gap-2 uppercase text-[11px] tracking-[0.12em] sm:text-xs sm:tracking-[0.2em] md:col-span-2">
                 Project Title
                 <input
-                  className="w-full px-4 py-3 rounded-xl bg-[#05110e] border border-[#4dffb7]/20 text-sm"
+                  className="w-full px-3 py-2.5 sm:px-4 sm:py-3 rounded-xl bg-[#05110e] border border-[#4dffb7]/20 text-sm"
                   name="project_title"
                   type="text"
                   required
@@ -287,7 +287,7 @@ const ProjectShowcaseRegisterPage = () => {
               <label className="flex flex-col gap-2 uppercase text-[11px] tracking-[0.12em] sm:text-xs sm:tracking-[0.2em] md:col-span-2">
                 Category
                 <input
-                  className="w-full px-4 py-3 rounded-xl bg-[#05110e] border border-[#4dffb7]/20 text-sm"
+                  className="w-full px-3 py-2.5 sm:px-4 sm:py-3 rounded-xl bg-[#05110e] border border-[#4dffb7]/20 text-sm"
                   name="category"
                   type="text"
                   required
@@ -301,7 +301,7 @@ const ProjectShowcaseRegisterPage = () => {
             <label className="flex flex-col gap-2 uppercase text-[11px] tracking-[0.12em] sm:text-xs sm:tracking-[0.2em]">
               Project Description
               <textarea
-                className="w-full px-4 py-3 rounded-xl bg-[#05110e] border border-[#4dffb7]/20 text-sm min-h-[140px]"
+                className="w-full px-3 py-2.5 sm:px-4 sm:py-3 rounded-xl bg-[#05110e] border border-[#4dffb7]/20 text-sm min-h-[120px] sm:min-h-[140px]"
                 name="description"
                 required
                 value={formValues.description}
@@ -326,7 +326,7 @@ const ProjectShowcaseRegisterPage = () => {
 
             <div className="flex justify-end">
               <button
-                className="w-full sm:w-auto px-8 py-3 rounded-full bg-[#4dffb7] text-black font-bold text-xs sm:text-sm tracking-[0.15em] sm:tracking-[0.25em] uppercase"
+                className="w-full sm:w-auto px-6 py-2.5 sm:px-8 sm:py-3 rounded-full bg-[#4dffb7] text-black font-bold text-xs sm:text-sm tracking-[0.15em] sm:tracking-[0.25em] uppercase"
                 type="submit"
                 disabled={formDisabled || statusType === 'pending'}
               >
@@ -336,31 +336,31 @@ const ProjectShowcaseRegisterPage = () => {
           </form>
         </section>
 
-        <section className="px-0 sm:px-4">
-          <div className="w-full max-w-4xl mx-auto bg-[#091915]/85 border border-[#4dffb7]/35 rounded-3xl px-4 py-6 sm:px-8 sm:py-8">
-            <h2 className="text-2xl font-extrabold tracking-[0.25em] uppercase text-white mb-6">
+        <section className="w-full">
+          <div className="w-full max-w-4xl mx-auto bg-[#091915]/85 border border-[#4dffb7]/35 rounded-2xl sm:rounded-3xl px-3 py-5 sm:px-8 sm:py-8">
+            <h2 className="text-xl sm:text-2xl font-extrabold tracking-[0.15em] sm:tracking-[0.25em] uppercase text-white mb-4 sm:mb-6">
               Schedule Line-Up
             </h2>
             <div className="overflow-x-auto rounded-2xl border border-[#4dffb7]/25">
               <table className="min-w-full text-sm">
-              <thead className="bg-[#133125] text-[#4dffb7] tracking-[0.2em] uppercase text-xs">
+              <thead className="bg-[#133125] text-[#4dffb7] tracking-[0.15em] sm:tracking-[0.2em] uppercase text-[10px] sm:text-xs">
                 <tr>
-                  <th className="px-4 py-3 text-left">Slot</th>
-                  <th className="px-4 py-3 text-left">Name</th>
-                  <th className="px-4 py-3 text-left">Clan</th>
-                  <th className="px-4 py-3 text-left">Project Title</th>
+                  <th className="px-2 sm:px-4 py-2 sm:py-3 text-left">Slot</th>
+                  <th className="px-2 sm:px-4 py-2 sm:py-3 text-left">Name</th>
+                  <th className="px-2 sm:px-4 py-2 sm:py-3 text-left">Clan</th>
+                  <th className="px-2 sm:px-4 py-2 sm:py-3 text-left">Project Title</th>
                 </tr>
               </thead>
               <tbody>
                 {loadingSchedule ? (
                   <tr>
-                    <td className="px-4 py-4 text-center text-[#c9f6dd]" colSpan={4}>
+                    <td className="px-2 sm:px-4 py-3 sm:py-4 text-center text-[#c9f6dd] text-xs sm:text-sm" colSpan={4}>
                       Loading schedule...
                     </td>
                   </tr>
                 ) : schedule.length === 0 ? (
                   <tr>
-                    <td className="px-4 py-4 text-center text-[#c9f6dd]" colSpan={4}>
+                    <td className="px-2 sm:px-4 py-3 sm:py-4 text-center text-[#c9f6dd] text-xs sm:text-sm" colSpan={4}>
                       Slots will appear here once assigned.
                     </td>
                   </tr>
@@ -370,12 +370,12 @@ const ProjectShowcaseRegisterPage = () => {
                     .sort((a, b) => (a.slot ?? '').localeCompare(b.slot ?? ''))
                     .map((entry) => (
                       <tr key={`${entry.reg_no ?? entry.name}-${entry.slot ?? 'pending'}`} className="odd:bg-[#0b1f17]/60">
-                        <td className="px-4 py-3 text-[#7debb9] tracking-[0.15em] uppercase">
+                        <td className="px-2 sm:px-4 py-2 sm:py-3 text-[#7debb9] tracking-[0.1em] sm:tracking-[0.15em] uppercase text-xs sm:text-sm">
                           {entry.slot ?? 'Pending'}
                         </td>
-                        <td className="px-4 py-3">{entry.name}</td>
-                        <td className="px-4 py-3 text-[#c9f6dd]">{entry.clan ?? '—'}</td>
-                        <td className="px-4 py-3 text-[#c9f6dd]">{entry.project_title}</td>
+                        <td className="px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm">{entry.name}</td>
+                        <td className="px-2 sm:px-4 py-2 sm:py-3 text-[#c9f6dd] text-xs sm:text-sm">{entry.clan ?? '—'}</td>
+                        <td className="px-2 sm:px-4 py-2 sm:py-3 text-[#c9f6dd] text-xs sm:text-sm">{entry.project_title}</td>
                       </tr>
                     ))
                 )}
