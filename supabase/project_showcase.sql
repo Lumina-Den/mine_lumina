@@ -36,12 +36,16 @@ create table if not exists public.registrations (
   year text not null,
   section text not null,
   clan text not null,
+  email text not null,
   project_title text not null,
   description text not null,
   category text not null,
   slot text,
   created_at timestamptz default now()
 );
+
+alter table public.registrations
+  add column if not exists email text;
 
 create unique index if not exists registrations_event_reg_unique
   on public.registrations(event_id, reg_no);
