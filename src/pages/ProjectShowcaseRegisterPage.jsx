@@ -145,10 +145,10 @@ const ProjectShowcaseRegisterPage = () => {
   }
 
   return (
-    <main className="min-h-screen bg-[#050c0a] text-[#ecfff6] px-4 sm:px-6 lg:px-8 pt-32 pb-16">
-      <div className="max-w-5xl mx-auto grid gap-12">
+    <main className="min-h-screen w-full overflow-x-hidden bg-[#050c0a] text-[#ecfff6] px-4 sm:px-6 lg:px-8 pt-32 pb-16">
+      <div className="max-w-5xl mx-auto grid gap-12 px-1">
         <section className="space-y-4">
-          <h1 className="text-3xl sm:text-4xl font-extrabold tracking-[0.25em] uppercase text-white">
+          <h1 className="text-3xl sm:text-4xl font-extrabold tracking-[0.1em] sm:tracking-[0.25em] uppercase text-white">
             Project Showcase Registration
           </h1>
           <p className="text-sm leading-relaxed text-[#7debb9] bg-[#133125] border border-[#4dffb7]/30 rounded-2xl px-5 py-4">
@@ -156,9 +156,9 @@ const ProjectShowcaseRegisterPage = () => {
           </p>
         </section>
 
-        <section>
+        <section className="px-0 sm:px-4">
           <form
-            className="bg-[#091915]/85 border border-[#4dffb7]/35 rounded-3xl p-6 sm:p-8 grid gap-6"
+            className="w-full max-w-3xl mx-auto bg-[#091915]/85 border border-[#4dffb7]/35 rounded-3xl px-4 py-6 sm:px-8 sm:py-8 grid gap-6"
             onSubmit={handleSubmit}
           >
             <div className="grid gap-5 md:grid-cols-2">
@@ -326,7 +326,7 @@ const ProjectShowcaseRegisterPage = () => {
 
             <div className="flex justify-end">
               <button
-                className="px-8 py-3 rounded-full bg-[#4dffb7] text-black font-bold tracking-[0.25em] uppercase"
+                className="w-full sm:w-auto px-8 py-3 rounded-full bg-[#4dffb7] text-black font-bold text-xs sm:text-sm tracking-[0.15em] sm:tracking-[0.25em] uppercase"
                 type="submit"
                 disabled={formDisabled || statusType === 'pending'}
               >
@@ -336,12 +336,13 @@ const ProjectShowcaseRegisterPage = () => {
           </form>
         </section>
 
-        <section className="bg-[#091915]/85 border border-[#4dffb7]/35 rounded-3xl p-6 sm:p-8">
-          <h2 className="text-2xl font-extrabold tracking-[0.25em] uppercase text-white mb-6">
-            Schedule Line-Up
-          </h2>
-          <div className="overflow-x-auto rounded-2xl border border-[#4dffb7]/25">
-            <table className="min-w-full text-sm">
+        <section className="px-0 sm:px-4">
+          <div className="w-full max-w-4xl mx-auto bg-[#091915]/85 border border-[#4dffb7]/35 rounded-3xl px-4 py-6 sm:px-8 sm:py-8">
+            <h2 className="text-2xl font-extrabold tracking-[0.25em] uppercase text-white mb-6">
+              Schedule Line-Up
+            </h2>
+            <div className="overflow-x-auto rounded-2xl border border-[#4dffb7]/25">
+              <table className="min-w-full text-sm">
               <thead className="bg-[#133125] text-[#4dffb7] tracking-[0.2em] uppercase text-xs">
                 <tr>
                   <th className="px-4 py-3 text-left">Slot</th>
@@ -379,7 +380,8 @@ const ProjectShowcaseRegisterPage = () => {
                     ))
                 )}
               </tbody>
-            </table>
+              </table>
+            </div>
           </div>
         </section>
       </div>
