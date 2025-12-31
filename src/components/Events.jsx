@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const EVENTS = [
   {
     title: 'Project Showcase',
-    date: 'Jan-02, 2026 · 16:00 UTC',
+    date: 'Jan-02, 2026 · 05:00 PM - 07:00 PM IST',
     description:
       'Registration is live right now. Bring your build, your deck, your best clan tech to the main stage.',
     cta: 'Register Now',
@@ -16,7 +16,7 @@ const EVENTS = [
   },
   {
     title: 'Weekly Bash',
-    date: 'Every Saturday · 20:00 UTC',
+    date: 'Every Sunday · 1:30 PM IST',
     description:
       'Clan DJs, meme reels, mini-games, and shout-outs. Drop in, boost morale, and recruit new allies.',
     cta: 'Join the Bash',
@@ -26,7 +26,7 @@ const EVENTS = [
   },
   {
     title: 'Community Gathering',
-    date: 'Wednesdays · 17:00 UTC',
+    date: 'Wednesdays · 10:30 PM IST',
     description:
       'Meet the newest recruits, celebrate squad wins, and sync with partner crews across the network.',
     cta: 'Say Hello',
@@ -36,25 +36,25 @@ const EVENTS = [
   },
   {
     title: 'Clan Strategy Gathering',
-    date: 'Mondays · 19:00 UTC',
+    date: 'Tuesdays · 12:30 PM IST',
     description: 'War-room intel, board review, and weeklong raid planning for internal squads only.',
     cta: 'RSVP for HQ',
     category: 'Inter-Clan',
     status: 'Upcoming',
     image: '/eve_4.jpg',
   },
-  {
-    title: 'Project Showcase Night (internal)',
-    date: 'Bi-weekly · 18:30 UTC',
-    description: 'Closed-door walkthroughs of automation scripts, mod pipelines, and experimental tech.',
-    cta: 'Book a Slot',
-    category: 'Inter-Clan',
-    status: 'Live',
-    image: '/eve_5.jpg',
-  },
+  // {
+  //   title: 'Project Showcase Night (internal)',
+  //   date: 'Bi-weekly · 17:00 UTC',
+  //   description: 'Closed-door walkthroughs of automation scripts, mod pipelines, and experimental tech.',
+  //   cta: 'Book a Slot',
+  //   category: 'Inter-Clan',
+  //   status: 'Live',
+  //   image: '/eve_5.jpg',
+  // },
   {
     title: 'Co-op Gaming Lounge',
-    date: 'Fridays · 22:00 UTC',
+    date: 'Saturdays · 3:30 PM IST',
     description: 'Operators-only wrap party. Casual rotations and throwback tournaments now archived.',
     cta: 'Catch Highlights',
     category: 'Inter-Clan',
@@ -63,7 +63,7 @@ const EVENTS = [
   },
   {
     title: 'Creator Bootcamp',
-    date: 'Next Month · 15:00 UTC',
+    date: 'Next Month · 8:30 PM IST',
     description: 'Content ops intensive: streaming, editing, narrative building led by allied creators.',
     cta: 'Secure a Seat',
     category: 'Outside',

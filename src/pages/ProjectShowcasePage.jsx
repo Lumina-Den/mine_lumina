@@ -48,7 +48,7 @@ const ProjectShowcasePage = () => {
     ? new Intl.DateTimeFormat('en', { dateStyle: 'full' }).format(eventDate)
     : 'TBA'
   const formattedTime = eventDate
-    ? `${new Intl.DateTimeFormat('en', { timeStyle: 'short' }).format(eventDate)} UTC`
+    ? `${new Intl.DateTimeFormat('en', { timeStyle: 'short', timeZone: 'Asia/Kolkata' }).format(eventDate)} IST`
     : 'TBA'
 
   return (
