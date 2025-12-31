@@ -55,8 +55,8 @@ const ProjectShowcaseRegisterPage = () => {
     async function loadSchedule() {
       const { data, error } = await supabase
         .from('registrations')
-        .select('slot, name, clan, project_title, reg_no')
-        .eq('event_id', PROJECT_SHOWCASE_EVENT_ID)
+        .select('slot, name, clan, project_title, reg_no, event_id')
+        .in('event_id', [PROJECT_SHOWCASE_EVENT_ID, 'project_showcase_community_2025_day2'])
         .order('slot', { ascending: true })
 
       if (!isMounted) return
@@ -77,7 +77,7 @@ const ProjectShowcaseRegisterPage = () => {
       channel
         .on(
           'postgres_changes',
-          { event: '*', schema: 'public', table: 'registrations', filter: `event_id=eq.${PROJECT_SHOWCASE_EVENT_ID}` },
+          { event: '*', schema: 'public', table: 'registrations' },
           () => {
             loadSchedule()
           }
@@ -337,51 +337,92 @@ const ProjectShowcaseRegisterPage = () => {
         </section>
 
         <section className="w-full">
-          <div className="w-full max-w-4xl mx-auto bg-[#091915]/85 border border-[#4dffb7]/35 rounded-2xl sm:rounded-3xl px-3 py-5 sm:px-8 sm:py-8">
-            <h2 className="text-xl sm:text-2xl font-extrabold tracking-[0.15em] sm:tracking-[0.25em] uppercase text-white mb-4 sm:mb-6">
-              Schedule Line-Up
-            </h2>
-            <div className="overflow-x-auto rounded-2xl border border-[#4dffb7]/25">
-              <table className="min-w-full text-sm">
-              <thead className="bg-[#133125] text-[#4dffb7] tracking-[0.15em] sm:tracking-[0.2em] uppercase text-[10px] sm:text-xs">
-                <tr>
-                  <th className="px-2 sm:px-4 py-2 sm:py-3 text-left">Slot</th>
-                  <th className="px-2 sm:px-4 py-2 sm:py-3 text-left">Name</th>
-                  <th className="px-2 sm:px-4 py-2 sm:py-3 text-left">Clan</th>
-                  <th className="px-2 sm:px-4 py-2 sm:py-3 text-left">Project Title</th>
-                </tr>
-              </thead>
-              <tbody>
-                {loadingSchedule ? (
-                  <tr>
-                    <td className="px-2 sm:px-4 py-3 sm:py-4 text-center text-[#c9f6dd] text-xs sm:text-sm" colSpan={4}>
-                      Loading schedule...
-                    </td>
-                  </tr>
-                ) : schedule.length === 0 ? (
-                  <tr>
-                    <td className="px-2 sm:px-4 py-3 sm:py-4 text-center text-[#c9f6dd] text-xs sm:text-sm" colSpan={4}>
-                      Slots will appear here once assigned.
-                    </td>
-                  </tr>
-                ) : (
-                  schedule
-                    .slice()
-                    .sort((a, b) => (a.slot ?? '').localeCompare(b.slot ?? ''))
-                    .map((entry) => (
-                      <tr key={`${entry.reg_no ?? entry.name}-${entry.slot ?? 'pending'}`} className="odd:bg-[#0b1f17]/60">
-                        <td className="px-2 sm:px-4 py-2 sm:py-3 text-[#7debb9] tracking-[0.1em] sm:tracking-[0.15em] uppercase text-xs sm:text-sm">
-                          {entry.slot ?? 'Pending'}
+          <div className="w-full max-w-4xl mx-auto bg-[#091915]/85 border border-[#4dffb7]/35 rounded-2xl sm:rounded-3xl px-3 py-5 sm:px-8 sm:py-8 space-y-8">
+            {/* Day 1 Schedule */}
+            <div>
+              <h2 className="text-xl sm:text-2xl font-extrabold tracking-[0.15em] sm:tracking-[0.25em] uppercase text-white mb-4 sm:mb-6">
+                Day 1 Schedule
+              </h2>
+              <div className="overflow-x-auto rounded-2xl border border-[#4dffb7]/25">
+                <table className="min-w-full text-sm">
+                  <thead className="bg-[#133125] text-[#4dffb7] tracking-[0.15em] sm:tracking-[0.2em] uppercase text-[10px] sm:text-xs">
+                    <tr>
+                      <th className="px-2 sm:px-4 py-2 sm:py-3 text-left">Slot</th>
+                      <th className="px-2 sm:px-4 py-2 sm:py-3 text-left">Name</th>
+                      <th className="px-2 sm:px-4 py-2 sm:py-3 text-left">Clan</th>
+                      <th className="px-2 sm:px-4 py-2 sm:py-3 text-left">Project Title</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {loadingSchedule ? (
+                      <tr>
+                        <td className="px-2 sm:px-4 py-3 sm:py-4 text-center text-[#c9f6dd] text-xs sm:text-sm" colSpan={4}>
+                          Loading schedule...
                         </td>
-                        <td className="px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm">{entry.name}</td>
-                        <td className="px-2 sm:px-4 py-2 sm:py-3 text-[#c9f6dd] text-xs sm:text-sm">{entry.clan ?? '—'}</td>
-                        <td className="px-2 sm:px-4 py-2 sm:py-3 text-[#c9f6dd] text-xs sm:text-sm">{entry.project_title}</td>
                       </tr>
-                    ))
-                )}
-              </tbody>
-              </table>
+                    ) : schedule.filter((e) => e.event_id === PROJECT_SHOWCASE_EVENT_ID).length === 0 ? (
+                      <tr>
+                        <td className="px-2 sm:px-4 py-3 sm:py-4 text-center text-[#c9f6dd] text-xs sm:text-sm" colSpan={4}>
+                          Day 1 slots will appear here once assigned.
+                        </td>
+                      </tr>
+                    ) : (
+                      schedule
+                        .filter((e) => e.event_id === PROJECT_SHOWCASE_EVENT_ID)
+                        .slice()
+                        .sort((a, b) => (a.slot ?? '').localeCompare(b.slot ?? ''))
+                        .map((entry) => (
+                          <tr key={`day1-${entry.reg_no ?? entry.name}-${entry.slot ?? 'pending'}`} className="odd:bg-[#0b1f17]/60">
+                            <td className="px-2 sm:px-4 py-2 sm:py-3 text-[#7debb9] tracking-[0.1em] sm:tracking-[0.15em] uppercase text-xs sm:text-sm">
+                              {entry.slot ?? 'Pending'}
+                            </td>
+                            <td className="px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm">{entry.name}</td>
+                            <td className="px-2 sm:px-4 py-2 sm:py-3 text-[#c9f6dd] text-xs sm:text-sm">{entry.clan ?? '—'}</td>
+                            <td className="px-2 sm:px-4 py-2 sm:py-3 text-[#c9f6dd] text-xs sm:text-sm">{entry.project_title}</td>
+                          </tr>
+                        ))
+                    )}
+                  </tbody>
+                </table>
+              </div>
             </div>
+
+            {/* Day 2 Schedule */}
+            {schedule.filter((e) => e.event_id === 'project_showcase_community_2025_day2').length > 0 && (
+              <div>
+                <h2 className="text-xl sm:text-2xl font-extrabold tracking-[0.15em] sm:tracking-[0.25em] uppercase text-white mb-4 sm:mb-6">
+                  Day 2 Schedule (Overflow)
+                </h2>
+                <div className="overflow-x-auto rounded-2xl border border-[#4dffb7]/25">
+                  <table className="min-w-full text-sm">
+                    <thead className="bg-[#133125] text-[#4dffb7] tracking-[0.15em] sm:tracking-[0.2em] uppercase text-[10px] sm:text-xs">
+                      <tr>
+                        <th className="px-2 sm:px-4 py-2 sm:py-3 text-left">Slot</th>
+                        <th className="px-2 sm:px-4 py-2 sm:py-3 text-left">Name</th>
+                        <th className="px-2 sm:px-4 py-2 sm:py-3 text-left">Clan</th>
+                        <th className="px-2 sm:px-4 py-2 sm:py-3 text-left">Project Title</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {schedule
+                        .filter((e) => e.event_id === 'project_showcase_community_2025_day2')
+                        .slice()
+                        .sort((a, b) => (a.slot ?? '').localeCompare(b.slot ?? ''))
+                        .map((entry) => (
+                          <tr key={`day2-${entry.reg_no ?? entry.name}-${entry.slot ?? 'pending'}`} className="odd:bg-[#0b1f17]/60">
+                            <td className="px-2 sm:px-4 py-2 sm:py-3 text-[#7debb9] tracking-[0.1em] sm:tracking-[0.15em] uppercase text-xs sm:text-sm">
+                              {entry.slot ?? 'Pending'}
+                            </td>
+                            <td className="px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm">{entry.name}</td>
+                            <td className="px-2 sm:px-4 py-2 sm:py-3 text-[#c9f6dd] text-xs sm:text-sm">{entry.clan ?? '—'}</td>
+                            <td className="px-2 sm:px-4 py-2 sm:py-3 text-[#c9f6dd] text-xs sm:text-sm">{entry.project_title}</td>
+                          </tr>
+                        ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
           </div>
         </section>
       </div>

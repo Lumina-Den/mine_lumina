@@ -11,13 +11,20 @@ create table if not exists public.events (
   created_at timestamptz default now()
 );
 
--- Seed the Project Showcase event
+-- Seed the Project Showcase events (Day 1 and Day 2)
 insert into public.events (id, name, description, date, type)
 values (
   'project_showcase_community_2025',
-  'Project Showcase',
+  'Project Showcase - Day 1',
   'A focused community showcase where squads present their latest builds and research.',
   '2025-03-15T14:00:00Z',
+  'Community'
+),
+(
+  'project_showcase_community_2025_day2',
+  'Project Showcase - Day 2',
+  'Overflow day for additional project presentations.',
+  '2025-03-16T14:00:00Z',
   'Community'
 )
 on conflict (id) do update
@@ -89,7 +96,27 @@ values
   ('project_showcase_community_2025', 'Slot 17'),
   ('project_showcase_community_2025', 'Slot 18'),
   ('project_showcase_community_2025', 'Slot 19'),
-  ('project_showcase_community_2025', 'Slot 20')
+  ('project_showcase_community_2025', 'Slot 20'),
+  ('project_showcase_community_2025_day2', 'Slot 01'),
+  ('project_showcase_community_2025_day2', 'Slot 02'),
+  ('project_showcase_community_2025_day2', 'Slot 03'),
+  ('project_showcase_community_2025_day2', 'Slot 04'),
+  ('project_showcase_community_2025_day2', 'Slot 05'),
+  ('project_showcase_community_2025_day2', 'Slot 06'),
+  ('project_showcase_community_2025_day2', 'Slot 07'),
+  ('project_showcase_community_2025_day2', 'Slot 08'),
+  ('project_showcase_community_2025_day2', 'Slot 09'),
+  ('project_showcase_community_2025_day2', 'Slot 10'),
+  ('project_showcase_community_2025_day2', 'Slot 11'),
+  ('project_showcase_community_2025_day2', 'Slot 12'),
+  ('project_showcase_community_2025_day2', 'Slot 13'),
+  ('project_showcase_community_2025_day2', 'Slot 14'),
+  ('project_showcase_community_2025_day2', 'Slot 15'),
+  ('project_showcase_community_2025_day2', 'Slot 16'),
+  ('project_showcase_community_2025_day2', 'Slot 17'),
+  ('project_showcase_community_2025_day2', 'Slot 18'),
+  ('project_showcase_community_2025_day2', 'Slot 19'),
+  ('project_showcase_community_2025_day2', 'Slot 20')
 on conflict (event_id, slot_label) do nothing;
 
 -- Automatically assign an available slot before storing each registration
@@ -99,32 +126,51 @@ language plpgsql
 as $$
 declare
   selected_slot record;
+  target_event_id text;
 begin
   if new.slot is not null then
     return new;
   end if;
 
-  select id, slot_label
+  -- Try Day 1 first
+  target_event_id := 'project_showcase_community_2025';
+  
+  select id, slot_label, event_id
   into selected_slot
   from public.event_slots
-  where event_id = new.event_id
+  where event_id = target_event_id
     and assigned_registration is null
   order by random()
   limit 1
   for update skip locked;
 
+  -- If Day 1 is full, try Day 2
   if selected_slot is null then
-    raise exception 'No slots remaining for event %', new.event_id
+    target_event_id := 'project_showcase_community_2025_day2';
+    
+    select id, slot_label, event_id
+    into selected_slot
+    from public.event_slots
+    where event_id = target_event_id
+      and assigned_registration is null
+    order by random()
+    limit 1
+    for update skip locked;
+  end if;
+
+  -- If both days are full, raise error
+  if selected_slot is null then
+    raise exception 'No slots remaining for Project Showcase (both days full)'
       using errcode = 'P0001';
   end if;
+
+  -- Update the registration with the correct event_id and slot
+  new.event_id := selected_slot.event_id;
+  new.slot := selected_slot.slot_label;
 
   update public.event_slots
   set assigned_registration = new.id
   where id = selected_slot.id;
-
-  update public.registrations
-  set slot = selected_slot.slot_label
-  where id = new.id;
 
   return new;
 end;
@@ -133,6 +179,6 @@ $$;
 drop trigger if exists registrations_assign_slot on public.registrations;
 
 create trigger registrations_assign_slot
-after insert on public.registrations
+before insert on public.registrations
 for each row
 execute function public.assign_random_slot();
