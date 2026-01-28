@@ -168,17 +168,35 @@ begin
   new.event_id := selected_slot.event_id;
   new.slot := selected_slot.slot_label;
 
+  return new;
+end;
+$$;
+
+-- Link the slot after registration is committed
+create or replace function public.link_slot_to_registration()
+returns trigger
+language plpgsql
+as $$
+begin
   update public.event_slots
   set assigned_registration = new.id
-  where id = selected_slot.id;
+  where event_id = new.event_id
+    and slot_label = new.slot
+    and assigned_registration is null;
 
   return new;
 end;
 $$;
 
 drop trigger if exists registrations_assign_slot on public.registrations;
+drop trigger if exists registrations_link_slot on public.registrations;
 
 create trigger registrations_assign_slot
 before insert on public.registrations
 for each row
 execute function public.assign_random_slot();
+
+create trigger registrations_link_slot
+after insert on public.registrations
+for each row
+execute function public.link_slot_to_registration();

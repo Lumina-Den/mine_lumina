@@ -3,20 +3,28 @@ import { Link } from 'react-router-dom'
 
 const EVENTS = [
   {
-    title: 'Project Showcase',
-    date: 'Jan-02, 2026 · 05:00 PM - 07:00 PM IST',
+    title: 'Rookie Weekly Bash',
+    date: 'Jan-31, 2026 · 9:30 AM - 3:30 PM IST',
     description:
-      'Registration is live right now. Bring your build, your deck, your best clan tech to the main stage.',
-    cta: 'Register Now',
-    link: '/events/project-showcase/register',
+      'Where rookies meet Bashers! Get introduced to all clans, explore their unique cultures, and choose your squad. Your clan journey starts here.',
     category: 'Community',
     status: 'Upcoming',
-    image: '/eve_1.jpg',
+    image: '/eve_10.jpg',
     featured: true,
   },
   {
+    title: 'Project Showcase',
+    date: 'Jan-18, 2026 · 05:00 PM - 07:00 PM IST',
+    description:
+      'Builds were showcased, decks were presented, and clan tech took center stage. Check out the highlights and winning projects.',
+    cta: 'View Recap',
+    category: 'Community',
+    status: 'Wrapped',
+    image: '/eve_1.jpg',
+  },
+  {
     title: 'Weekly Bash',
-    date: 'Every Sunday · 1:30 PM IST',
+    date: 'Every Saturday · 9:30 AM - 3:30 PM IST',
     description:
       'Clan DJs, meme reels, mini-games, and shout-outs. Drop in, boost morale, and recruit new allies.',
     cta: 'Join the Bash',
@@ -26,7 +34,7 @@ const EVENTS = [
   },
   {
     title: 'Community Gathering',
-    date: 'Wednesdays · 10:30 PM IST',
+    date: 'Working days · 3:00 PM - 3:50 PM IST',
     description:
       'Meet the newest recruits, celebrate squad wins, and sync with partner crews across the network.',
     cta: 'Say Hello',
